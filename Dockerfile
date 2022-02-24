@@ -6,6 +6,7 @@ RUN apt-get update
 RUN apt-get install -y --fix-missing make cmake g++ nodejs npm
 RUN /opt/conda/bin/pip3 install pandas matplotlib
 RUN /opt/conda/bin/pip3 install pyyaml graphframes
+RUN /opt/conda/bin/pip3 install multiprocess textx
 RUN npm init -y
 COPY package*.json /usr/gapps/spot/
 RUN npm install express path express-session multer body-parser cookie-parser pug bcryptjs
