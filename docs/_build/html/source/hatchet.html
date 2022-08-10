@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hatchet package &mdash; SPOT 0.5.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="hatchet.cython_modules package" href="hatchet.cython_modules.html" />
+    <link rel="prev" title="Publications and Presentations" href="../publications.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> SPOT
+          </a>
+              <div class="version">
+                0.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_lang.html">Query Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_generation.html">Generating Profiling Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analysis_examples.html">Analysis Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_tutorial.html">Basic Tutorial: Hatchet 101</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">Publications and Presentations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hatchet API Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.cython_modules.html">hatchet.cython_modules package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.external.html">hatchet.external package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.readers.html">hatchet.readers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.util.html">hatchet.util package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.vis.html">hatchet.vis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.writers.html">hatchet.writers package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hatchet.frame">hatchet.frame module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hatchet.graph">hatchet.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hatchet.graphframe">hatchet.graphframe module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hatchet.node">hatchet.node module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hatchet.query">hatchet.query module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hatchet.version">hatchet.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hatchet">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPOT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>hatchet package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/hatchet.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hatchet-package">
+<h1>hatchet package<a class="headerlink" href="#hatchet-package" title="Permalink to this headline">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hatchet.cython_modules.html">hatchet.cython_modules package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.cython_modules.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.cython_modules.libs.html">hatchet.cython_modules.libs package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.cython_modules.libs.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.cython_modules.libs.html#module-hatchet.cython_modules.libs.graphframe_modules">hatchet.cython_modules.libs.graphframe_modules module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.cython_modules.libs.html#module-hatchet.cython_modules.libs.reader_modules">hatchet.cython_modules.libs.reader_modules module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.cython_modules.libs.html#module-hatchet.cython_modules.libs">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.cython_modules.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.cython_modules.html#module-hatchet.cython_modules.graphframe_modules">hatchet.cython_modules.graphframe_modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.cython_modules.html#hatchet-cython-modules-reader-modules-module">hatchet.cython_modules.reader_modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.cython_modules.html#module-hatchet.cython_modules">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hatchet.external.html">hatchet.external package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.external.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.external.roundtrip.html">hatchet.external.roundtrip package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.external.roundtrip.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.external.roundtrip.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.external.roundtrip.html#hatchet-external-roundtrip-setup-module">hatchet.external.roundtrip.setup module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.external.roundtrip.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.external.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.external.html#module-hatchet.external.console">hatchet.external.console module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.external.html#module-hatchet.external">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hatchet.readers.html">hatchet.readers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.caliper_native_reader">hatchet.readers.caliper_native_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.caliper_reader">hatchet.readers.caliper_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.cprofile_reader">hatchet.readers.cprofile_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.dataframe_reader">hatchet.readers.dataframe_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.gprof_dot_reader">hatchet.readers.gprof_dot_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.hdf5_reader">hatchet.readers.hdf5_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.hpctoolkit_reader">hatchet.readers.hpctoolkit_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.literal_reader">hatchet.readers.literal_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.pyinstrument_reader">hatchet.readers.pyinstrument_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.spotdb_reader">hatchet.readers.spotdb_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.tau_reader">hatchet.readers.tau_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers.timemory_reader">hatchet.readers.timemory_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.readers.html#module-hatchet.readers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hatchet.util.html">hatchet.util package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.util.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.util.html#module-hatchet.util.colormaps">hatchet.util.colormaps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.util.html#module-hatchet.util.config">hatchet.util.config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.util.html#module-hatchet.util.deprecated">hatchet.util.deprecated module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.util.html#module-hatchet.util.dot">hatchet.util.dot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.util.html#module-hatchet.util.executable">hatchet.util.executable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.util.html#module-hatchet.util.profiler">hatchet.util.profiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.util.html#module-hatchet.util.timer">hatchet.util.timer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.util.html#module-hatchet.util">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hatchet.vis.html">hatchet.vis package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.vis.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.vis.external.html">hatchet.vis.external package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.vis.external.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.vis.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.vis.html#hatchet-vis-loader-module">hatchet.vis.loader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.vis.html#hatchet-vis-static-fixer-module">hatchet.vis.static_fixer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.vis.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hatchet.writers.html">hatchet.writers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.writers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.writers.html#hatchet-writers-dataframe-writer-module">hatchet.writers.dataframe_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.writers.html#hatchet-writers-hdf5-writer-module">hatchet.writers.hdf5_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.writers.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-hatchet.frame">
+<span id="hatchet-frame-module"></span><h2>hatchet.frame module<a class="headerlink" href="#module-hatchet.frame" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.frame.Frame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.frame.</span></span><span class="sig-name descname"><span class="pre">Frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.frame.Frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The frame index for a node. The node only stores its frame.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>attrs (dict): dictionary of attributes and values</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.frame.Frame.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.frame.Frame.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.frame.Frame.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.frame.Frame.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="hatchet.frame.Frame.tuple_repr">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tuple_repr</span></span><a class="headerlink" href="#hatchet.frame.Frame.tuple_repr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a tuple of attributes and values based on reader.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.frame.Frame.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.frame.Frame.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of attribute values from this Frame.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.graph">
+<span id="hatchet-graph-module"></span><h2>hatchet.graph module<a class="headerlink" href="#module-hatchet.graph" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.graph.Graph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.graph.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roots</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A possibly multi-rooted tree or graph from one input dataset.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_to_new</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return a copy of this graph.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><dl class="simple">
+<dt>old_to_new (dict, optional): if provided, this dictionary will</dt><dd><p>be populated with mappings from old node -&gt; new node</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.enumerate_depth">
+<span class="sig-name descname"><span class="pre">enumerate_depth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.enumerate_depth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.enumerate_traverse">
+<span class="sig-name descname"><span class="pre">enumerate_traverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.enumerate_traverse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.find_merges">
+<span class="sig-name descname"><span class="pre">find_merges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.find_merges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find nodes that have the same parent and frame.</p>
+<p>Find nodes that have the same parent and duplicate frame, and
+return a mapping from nodes that should be eliminated to nodes
+they should be merged into.</p>
+<dl class="simple">
+<dt>Return:</dt><dd><p>(dict): dictionary from nodes to their merge targets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.from_lists">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">roots</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.from_lists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience method to invoke Node.from_lists() on each root value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.is_tree">
+<span class="sig-name descname"><span class="pre">is_tree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.is_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if this graph is a tree, false otherwise.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.merge_nodes">
+<span class="sig-name descname"><span class="pre">merge_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">merges</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.merge_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge some nodes in a graph into others.</p>
+<p><code class="docutils literal notranslate"><span class="pre">merges</span></code> is a dictionary keyed by old nodes, with values equal
+to the nodes that they need to be merged into.  Old nodes’
+parents and children are connected to the new node.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>merges (dict): dictionary from source nodes -&gt; targets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.normalize">
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.normalize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.traverse">
+<span class="sig-name descname"><span class="pre">traverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pre'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visited</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.traverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preorder traversal of all roots of this Graph.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><dl class="simple">
+<dt>attrs (list or str, optional): If provided, extract these</dt><dd><p>fields from nodes while traversing and yield them. See
+<code class="xref py py-func docutils literal notranslate"><span class="pre">traverse()</span></code> for details.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Only preorder traversal is currently supported.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graph.Graph.union">
+<span class="sig-name descname"><span class="pre">union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_to_new</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.Graph.union" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the union of self and other and return it as a new Graph.</p>
+<p>This creates a new graph and does not modify self or other. The
+new Graph has entirely new nodes.</p>
+<dl>
+<dt>Arguments:</dt><dd><p>other (Graph): another Graph
+old_to_new (dict, optional): if provided, this dictionary will</p>
+<blockquote>
+<div><p>be populated with mappings from old node -&gt; new node</p>
+</div></blockquote>
+</dd>
+<dt>Return:</dt><dd><p>(Graph): new Graph containing all nodes and edges from self and other</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hatchet.graph.index_by">
+<span class="sig-prename descclassname"><span class="pre">hatchet.graph.</span></span><span class="sig-name descname"><span class="pre">index_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graph.index_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put objects into lists based on the value of an attribute.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>(dict): dictionary of lists of objects, keyed by attribute value</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-hatchet.graphframe">
+<span id="hatchet-graphframe-module"></span><h2>hatchet.graphframe module<a class="headerlink" href="#module-hatchet.graphframe" title="Permalink to this headline">¶</a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="hatchet.graphframe.EmptyFilter">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.graphframe.</span></span><span class="sig-name descname"><span class="pre">EmptyFilter</span></span><a class="headerlink" href="#hatchet.graphframe.EmptyFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when a filter would otherwise return an empty GraphFrame.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.graphframe.</span></span><span class="sig-name descname"><span class="pre">GraphFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inc_metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'time'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An input dataset is read into an object of this type, which includes a graph
+and a dataframe.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the column-wise sum of two graphframes as a new graphframe.</p>
+<p>This graphframe is the union of self’s and other’s graphs, and does not
+modify self or other.</p>
+<dl class="simple">
+<dt>Return:</dt><dd><p>(GraphFrame): new graphframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a shallow copy of the graphframe.</p>
+<p>This copies the DataFrame, but the Graph is shared between self and
+the new GraphFrame.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.deepcopy">
+<span class="sig-name descname"><span class="pre">deepcopy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.deepcopy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the graphframe.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.div">
+<span class="sig-name descname"><span class="pre">div</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.div" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the column-wise float division of two graphframes as a new graphframe.</p>
+<p>This graphframe is the union of self’s and other’s graphs, and does not
+modify self or other.</p>
+<dl class="simple">
+<dt>Return:</dt><dd><p>(GraphFrame): new graphframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.drop_index_levels">
+<span class="sig-name descname"><span class="pre">drop_index_levels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function=&lt;function</span> <span class="pre">mean&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.drop_index_levels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drop all index levels but <cite>node</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squash</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_procs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter the dataframe using a user-supplied function.</p>
+<p>Note: Operates in parallel on user-supplied lambda functions.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>filter_obj (callable, list, or QueryMatcher): the filter to apply to the GraphFrame.
+squash (boolean, optional): if True, automatically call squash for the user.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_caliper">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_caliper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename_or_stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_caliper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a Caliper .cali or .json file.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>filename_or_stream (str or file-like): name of a Caliper output</dt><dd><p>file in <cite>.cali</cite> or JSON-split format, or an open file object
+to read one</p>
+</dd>
+</dl>
+<p>query (str): cali-query in CalQL format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_caliperreader">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_caliperreader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename_or_caliperreader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_caliperreader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a native Caliper <a href="#id1"><span class="problematic" id="id2">`</span></a>cali’ file using Caliper’s python reader.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>filename_or_caliperreader (str or CaliperReader): name of a Caliper</dt><dd><p>output file in <cite>.cali</cite> format, or a CaliperReader object</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_cprofile">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_cprofile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_cprofile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a pstats/prof file generated using python’s cProfile.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_gprof_dot">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_gprof_dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_gprof_dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a DOT file generated by gprof2dot.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_hdf">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_hdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_hdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_hpctoolkit">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_hpctoolkit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_hpctoolkit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read an HPCToolkit database directory into a new GraphFrame.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><dl class="simple">
+<dt>dirname (str): parent directory of an HPCToolkit</dt><dd><p>experiment.xml file</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(GraphFrame): new GraphFrame containing HPCToolkit profile data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_lists">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">lists</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_lists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a simple GraphFrame from lists.</p>
+<p>This creates a Graph from lists (see <code class="docutils literal notranslate"><span class="pre">Graph.from_lists()</span></code>) and uses
+it as the index for a new GraphFrame. Every node in the new graph has
+exclusive time of 1 and inclusive time is computed automatically.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_literal">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_literal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a GraphFrame from a list of dictionaries.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_pyinstrument">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_pyinstrument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_pyinstrument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a JSON file generated using Pyinstrument.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_spotdb">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_spotdb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_spotdb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read multiple graph frames from a SpotDB instance</p>
+<dl>
+<dt>Args:</dt><dd><dl>
+<dt>db_key (str or SpotDB object): locator for SpotDB instance</dt><dd><p>This can be a SpotDB object directly, or a locator for a spot
+database, which is a string with either</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A directory for .cali files,</p></li>
+<li><p>A .sqlite file name</p></li>
+<li><p>A SQL database URL (e.g., “mysql://hostname/db”)</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>list_of_ids: The list of run IDs to read from the database.</dt><dd><p>If this is None, returns all runs.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>A list of graphframes, one for each requested run that was found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_tau">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_tau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_tau" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a profile generated using TAU.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.from_timemory">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_timemory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.from_timemory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in timemory data.</p>
+<dl>
+<dt>Links:</dt><dd><p><a class="reference external" href="https://github.com/NERSC/timemory">https://github.com/NERSC/timemory</a>
+<a class="reference external" href="https://timemory.readthedocs.io">https://timemory.readthedocs.io</a></p>
+</dd>
+<dt>Arguments:</dt><dd><dl>
+<dt>input (str or file-stream or dict or None):</dt><dd><p>Valid argument types are:</p>
+<ol class="arabic simple">
+<li><p>Filename for a timemory JSON tree file</p></li>
+<li><p>Open file stream to one of these files</p></li>
+<li><p>Dictionary from timemory JSON tree</p></li>
+</ol>
+<p>Currently, timemory supports two JSON layouts: flat and tree.
+The former is a 1D-array representation of the hierarchy which
+represents the hierarchy via indentation schemes in the labels
+and is not compatible with hatchet. The latter is a hierarchical
+representation of the data and is the required JSON layout when
+using hatchet. Timemory JSON tree files typically have the
+extension “.tree.json”.</p>
+<p>If input is None, this assumes that timemory has been recording
+data within the application that is using hatchet. In this
+situation, this method will attempt to import the data directly
+from timemory.</p>
+<p>At the time of this writing, the direct data import will:</p>
+<ol class="arabic simple">
+<li><p>Stop any currently collecting components</p></li>
+<li><p>Aggregate child thread data of the calling thread</p></li>
+<li><p>Clear all data on the child threads</p></li>
+<li><p>Aggregate the data from any MPI and/or UPC++ ranks.</p></li>
+</ol>
+<p>Thus, if MPI or UPC++ is used, every rank must call this routine.
+The zeroth rank will have the aggregation and all the other
+non-zero ranks will only have the rank-specific data.</p>
+<p>Whether or not the per-thread and per-rank data itself is
+combined is controlled by the <cite>collapse_threads</cite> and
+<cite>collapse_processes</cite> attributes in the <cite>timemory.settings</cite>
+submodule.</p>
+<p>In the C++ API, it is possible for only #1 to be applied and data
+can be obtained for an individual thread and/or rank without
+aggregation. This is not currently available to Python, however,
+it can be made available upon request via a GitHub Issue.</p>
+</dd>
+<dt>select (list of str):</dt><dd><p>A list of strings which match the component enumeration names, e.g. [“cpu_clock”].</p>
+</dd>
+<dt>per_thread (boolean):</dt><dd><p>Ensures that when applying filters to the graphframe, frames with
+identical name/file/line/etc. info but from different threads are
+not combined</p>
+</dd>
+<dt>per_rank (boolean):</dt><dd><p>Ensures that when applying filters to the graphframe, frames with
+identical name/file/line/etc. info but from different ranks are
+not combined</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.groupby_aggregate">
+<span class="sig-name descname"><span class="pre">groupby_aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">groupby_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.groupby_aggregate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Groupby-aggregate dataframe and reindex the Graph.</p>
+<p>Reindex the graph to match the groupby-aggregated dataframe.</p>
+<p>Update the frame attributes to contain those columns in the dataframe index.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>self (graphframe): self’s graphframe
+groupby_function: groupby function on dataframe
+agg_function: aggregate function on dataframe</p>
+</dd>
+<dt>Return:</dt><dd><p>(GraphFrame): new graphframe with reindexed graph and groupby-aggregated dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.mul">
+<span class="sig-name descname"><span class="pre">mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.mul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the column-wise float multiplication of two graphframes as a new graphframe.</p>
+<p>This graphframe is the union of self’s and other’s graphs, and does not
+modify self or other.</p>
+<dl class="simple">
+<dt>Return:</dt><dd><p>(GraphFrame): new graphframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.show_metric_columns">
+<span class="sig-name descname"><span class="pre">show_metric_columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.show_metric_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of dataframe column labels.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.squash">
+<span class="sig-name descname"><span class="pre">squash</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.squash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rewrite the Graph to include only nodes present in the DataFrame’s rows.</p>
+<p>This can be used to simplify the Graph, or to normalize Graph
+indexes between two GraphFrames.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.sub">
+<span class="sig-name descname"><span class="pre">sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.sub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the column-wise difference of two graphframes as a new
+graphframe.</p>
+<p>This graphframe is the union of self’s and other’s graphs, and does not
+modify self or other.</p>
+<dl class="simple">
+<dt>Return:</dt><dd><p>(GraphFrame): new graphframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.subgraph_sum">
+<span class="sig-name descname"><span class="pre">subgraph_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_columns=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function=&lt;function</span> <span class="pre">GraphFrame.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.subgraph_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute sum of elements in subgraphs.</p>
+<p>For each row in the graph, <code class="docutils literal notranslate"><span class="pre">out_columns</span></code> will contain the
+element-wise sum of all values in <code class="docutils literal notranslate"><span class="pre">columns</span></code> for that row’s node
+and all of its descendants.</p>
+<p>This algorithm is worst-case quadratic in the size of the graph,
+so we try to call <code class="docutils literal notranslate"><span class="pre">subtree_sum</span></code> if we can.  In general, there
+is not a particularly efficient algorithm known for subgraph
+sums, so this does about as well as we know how.</p>
+<dl>
+<dt>Arguments:</dt><dd><p>columns (list of str):  names of columns to sum (default: all columns)
+out_columns (list of str): names of columns to store results</p>
+<blockquote>
+<div><p>(default: in place)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>function (callable): associative operator used to sum</dt><dd><p>elements, sum of an all-NA series is NaN (default: sum(min_count=1))</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.subtree_sum">
+<span class="sig-name descname"><span class="pre">subtree_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_columns=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function=&lt;function</span> <span class="pre">GraphFrame.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.subtree_sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute sum of elements in subtrees.  Valid only for trees.</p>
+<p>For each row in the graph, <code class="docutils literal notranslate"><span class="pre">out_columns</span></code> will contain the
+element-wise sum of all values in <code class="docutils literal notranslate"><span class="pre">columns</span></code> for that row’s node
+and all of its descendants.</p>
+<p>This algorithm will multiply count nodes with in-degree higher
+than one – i.e., it is only correct for trees.  Prefer using
+<code class="docutils literal notranslate"><span class="pre">subgraph_sum</span></code> (which calls <code class="docutils literal notranslate"><span class="pre">subtree_sum</span></code> if it can), unless
+you have a good reason not to.</p>
+<dl>
+<dt>Arguments:</dt><dd><p>columns (list of str): names of columns to sum (default: all columns)
+out_columns (list of str): names of columns to store results</p>
+<blockquote>
+<div><p>(default: in place)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>function (callable): associative operator used to sum</dt><dd><p>elements, sum of an all-NA series is NaN (default: sum(min_count=1))</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.to_dot">
+<span class="sig-name descname"><span class="pre">to_dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'name'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.to_dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the graph in the graphviz dot format:
+<a class="reference external" href="https://www.graphviz.org/doc/info/lang.html">https://www.graphviz.org/doc/info/lang.html</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.to_flamegraph">
+<span class="sig-name descname"><span class="pre">to_flamegraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'name'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.to_flamegraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the graph in the folded stack output required by FlameGraph
+<a class="reference external" href="http://www.brendangregg.com/flamegraphs.html">http://www.brendangregg.com/flamegraphs.html</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.to_hdf">
+<span class="sig-name descname"><span class="pre">to_hdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hatchet_graphframe'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.to_hdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.to_literal">
+<span class="sig-name descname"><span class="pre">to_literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'name'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cat_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.to_literal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format this graph as a list of dictionaries for Roundtrip
+visualizations.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.tree">
+<span class="sig-name descname"><span class="pre">tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'name'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expand_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'file'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highlight_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colormap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RdYlGn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert_colormap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format this graphframe as a tree and return the resulting string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.unify">
+<span class="sig-name descname"><span class="pre">unify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.unify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a unified graphframe.</p>
+<p>Ensure self and other have the same graph and same node IDs. This may
+change the node IDs in the dataframe.</p>
+<p>Update the graphs in the graphframe if they differ.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.graphframe.GraphFrame.update_inclusive_columns">
+<span class="sig-name descname"><span class="pre">update_inclusive_columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.GraphFrame.update_inclusive_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update inclusive columns (typically after operations that rewire the
+graph.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="hatchet.graphframe.InvalidFilter">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.graphframe.</span></span><span class="sig-name descname"><span class="pre">InvalidFilter</span></span><a class="headerlink" href="#hatchet.graphframe.InvalidFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when an invalid argument is passed to the filter function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hatchet.graphframe.parallel_apply">
+<span class="sig-prename descclassname"><span class="pre">hatchet.graphframe.</span></span><span class="sig-name descname"><span class="pre">parallel_apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.graphframe.parallel_apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function called in parallel, which does a pandas apply on part of a
+dataframe and returns the results via multiprocessing queue function.</p>
+</dd></dl>
+
+</section>
+<section id="module-hatchet.node">
+<span id="hatchet-node-module"></span><h2>hatchet.node module<a class="headerlink" href="#module-hatchet.node" title="Permalink to this headline">¶</a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="hatchet.node.MultiplePathError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.node.</span></span><span class="sig-name descname"><span class="pre">MultiplePathError</span></span><a class="headerlink" href="#hatchet.node.MultiplePathError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when a node is asked for a single path but has multiple.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.node.Node">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.node.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hnid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.Node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A node in the graph. The node only stores its frame.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.node.Node.add_child">
+<span class="sig-name descname"><span class="pre">add_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.Node.add_child" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a child to this node’s list of children.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.node.Node.add_parent">
+<span class="sig-name descname"><span class="pre">add_parent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.Node.add_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a parent to this node’s list of parents.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.node.Node.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.Node.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy this node without preserving parents or children.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.node.Node.dag_equal">
+<span class="sig-name descname"><span class="pre">dag_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.Node.dag_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if DAG rooted at self has the same structure as that rooted at
+other.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.node.Node.from_lists">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lists</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.Node.from_lists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a hierarchy of nodes from recursive lists.</p>
+<p>For example, this will construct a simple tree:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Node</span><span class="o">.</span><span class="n">from_lists</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">     a</span>
+<span class="go">    / \</span>
+<span class="go">   b   c</span>
+<span class="go"> / |   | \</span>
+<span class="go">d  e   f  g</span>
+</pre></div>
+</div>
+<p>And this will construct a simple diamond DAG:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">Frame</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;d&quot;</span><span class="p">))</span>
+<span class="n">Node</span><span class="o">.</span><span class="n">from_lists</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">  a</span>
+<span class="go"> / \</span>
+<span class="go">b   c</span>
+<span class="go"> \ /</span>
+<span class="go">  d</span>
+</pre></div>
+</div>
+<p>In the above examples, the ‘a’ represents a Node with its
+<cite>frame == Frame(name=”a”)</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.node.Node.path">
+<span class="sig-name descname"><span class="pre">path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.Node.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to this node from root. Raises if there are multiple paths.</p>
+<p>This is useful for trees (where each node only has one path), as
+it just gets the only element from <code class="docutils literal notranslate"><span class="pre">self.paths</span></code>.  This will
+fail with a MultiplePathError if there is more than one path to
+this node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.node.Node.paths">
+<span class="sig-name descname"><span class="pre">paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.Node.paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of tuples, one for each path from this node to any root.</p>
+<p>Paths are tuples of node objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.node.Node.traverse">
+<span class="sig-name descname"><span class="pre">traverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pre'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visited</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.Node.traverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Traverse the tree depth-first and yield each node.</p>
+<dl>
+<dt>Arguments:</dt><dd><p>order (str):  “pre” or “post” for preorder or postorder (default: pre)
+attrs (list or str, optional): if provided, extract these fields</p>
+<blockquote>
+<div><p>from nodes while traversing and yield them</p>
+</div></blockquote>
+<dl class="simple">
+<dt>visited (dict, optional): dictionary in which each visited</dt><dd><p>node’s in-degree will be stored</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hatchet.node.traversal_order">
+<span class="sig-prename descclassname"><span class="pre">hatchet.node.</span></span><span class="sig-name descname"><span class="pre">traversal_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.node.traversal_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deterministic key function for sorting nodes in traversals.</p>
+</dd></dl>
+
+</section>
+<section id="module-hatchet.query">
+<span id="hatchet-query-module"></span><h2>hatchet.query module<a class="headerlink" href="#module-hatchet.query" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.query.AbstractQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">AbstractQuery</span></span><a class="headerlink" href="#hatchet.query.AbstractQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract Base Class defining a Hatchet Query</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.query.AbstractQuery.apply">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.AbstractQuery.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the query to a GraphFrame.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>gf (GraphFrame): the GraphFrame on which to apply the query.</p>
+</dd>
+<dt>Returns:</dt><dd><p>(list): A list representing the set of nodes from paths that match this query.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.query.AndQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">AndQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.AndQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hatchet.query.NaryQuery" title="hatchet.query.NaryQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.NaryQuery</span></code></a></p>
+<p>Compound Query that returns the intersection of the results
+of the subqueries</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="hatchet.query.BadNumberNaryQueryArgs">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">BadNumberNaryQueryArgs</span></span><a class="headerlink" href="#hatchet.query.BadNumberNaryQueryArgs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when a query filter does not have a valid syntax</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.query.CypherQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">CypherQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cypher_query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.CypherQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hatchet.query.QueryMatcher" title="hatchet.query.QueryMatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.QueryMatcher</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.query.IntersectionQuery">
+<span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">IntersectionQuery</span></span><a class="headerlink" href="#hatchet.query.IntersectionQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#hatchet.query.AndQuery" title="hatchet.query.AndQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.AndQuery</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="hatchet.query.InvalidQueryFilter">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">InvalidQueryFilter</span></span><a class="headerlink" href="#hatchet.query.InvalidQueryFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when a query filter does not have a valid syntax</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="hatchet.query.InvalidQueryPath">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">InvalidQueryPath</span></span><a class="headerlink" href="#hatchet.query.InvalidQueryPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when a query does not have the correct syntax</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.query.NaryQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">NaryQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.NaryQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hatchet.query.AbstractQuery" title="hatchet.query.AbstractQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.AbstractQuery</span></code></a></p>
+<p>Abstract Base Class defining a compound query
+that acts on and merges N separate subqueries</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.query.NaryQuery.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.NaryQuery.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the NaryQuery to a GraphFrame.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>gf (GraphFrame): the GraphFrame on which to apply the query.</p>
+</dd>
+<dt>Returns:</dt><dd><p>(list): A list of nodes representing the result of applying the subclass-designated operation to the results of the subqueries.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.query.NotQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">NotQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.NotQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hatchet.query.NaryQuery" title="hatchet.query.NaryQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.NaryQuery</span></code></a></p>
+<p>Compound Query that returns all nodes in the GraphFrame that
+are not returned from the subquery.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.query.OrQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">OrQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.OrQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hatchet.query.NaryQuery" title="hatchet.query.NaryQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.NaryQuery</span></code></a></p>
+<p>Compound Query that returns the union of the results
+of the subqueries</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.query.QueryMatcher">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">QueryMatcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.QueryMatcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hatchet.query.AbstractQuery" title="hatchet.query.AbstractQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.AbstractQuery</span></code></a></p>
+<p>Process and apply queries to GraphFrames.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.query.QueryMatcher.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.QueryMatcher.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the query to a GraphFrame.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>gf (GraphFrame): the GraphFrame on which to apply the query.</p>
+</dd>
+<dt>Returns:</dt><dd><p>(list): A list representing the set of nodes from paths that match this query.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.query.QueryMatcher.match">
+<span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wildcard_spec='.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_func=&lt;function</span> <span class="pre">QueryMatcher.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.QueryMatcher.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start a query with a root node described by the arguments.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>wildcard_spec (str, optional, “.”, “*”, or “+”): the wildcard status of the node (follows standard Regex syntax)
+filter_func (callable, optional): a callable accepting only a row from a Pandas DataFrame that is used to filter this node in the query</p>
+</dd>
+<dt>Returns:</dt><dd><p>(QueryMatcher): The instance of the class that called this function (enables fluent design).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.query.QueryMatcher.rel">
+<span class="sig-name descname"><span class="pre">rel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wildcard_spec='.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_func=&lt;function</span> <span class="pre">QueryMatcher.&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.QueryMatcher.rel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add another edge and node to the query.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>wildcard_spec (str, optional, “.”, “*”, or “+”): the wildcard status of the node (follows standard Regex syntax)
+filter_func (callable, optional): a callable accepting only a row from a Pandas DataFrame that is used to filter this node in the query</p>
+</dd>
+<dt>Returns:</dt><dd><p>(QueryMatcher): The instance of the class that called this function (enables fluent design).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.query.SymDifferenceQuery">
+<span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">SymDifferenceQuery</span></span><a class="headerlink" href="#hatchet.query.SymDifferenceQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#hatchet.query.XorQuery" title="hatchet.query.XorQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.XorQuery</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.query.UnionQuery">
+<span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">UnionQuery</span></span><a class="headerlink" href="#hatchet.query.UnionQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#hatchet.query.OrQuery" title="hatchet.query.OrQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.OrQuery</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.query.XorQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">XorQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.XorQuery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hatchet.query.NaryQuery" title="hatchet.query.NaryQuery"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.query.NaryQuery</span></code></a></p>
+<p>Compound Query that returns the symmetric difference
+(i.e., set-based XOR) of the results of the subqueries</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hatchet.query.cname">
+<span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">cname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.cname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hatchet.query.filter_check_types">
+<span class="sig-prename descclassname"><span class="pre">hatchet.query.</span></span><span class="sig-name descname"><span class="pre">filter_check_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_check</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filt_lambda</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.query.filter_check_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-hatchet.version">
+<span id="hatchet-version-module"></span><h2>hatchet.version module<a class="headerlink" href="#module-hatchet.version" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-hatchet">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-hatchet" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../publications.html" class="btn btn-neutral float-left" title="Publications and Presentations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hatchet.cython_modules.html" class="btn btn-neutral float-right" title="hatchet.cython_modules package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, LLNS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

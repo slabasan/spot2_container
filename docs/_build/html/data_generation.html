@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generating Profiling Datasets &mdash; SPOT 0.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Analysis Examples" href="analysis_examples.html" />
+    <link rel="prev" title="Query Language" href="query_lang.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SPOT
+          </a>
+              <div class="version">
+                0.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="query_lang.html">Query Language</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generating Profiling Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hpctoolkit">HPCToolkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caliper">Caliper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tau">TAU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timemory">timemory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyinstrument">pyinstrument</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_examples.html">Analysis Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_tutorial.html">Basic Tutorial: Hatchet 101</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications and Presentations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="source/hatchet.html">Hatchet API Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPOT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Generating Profiling Datasets</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/data_generation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generating-profiling-datasets">
+<h1>Generating Profiling Datasets<a class="headerlink" href="#generating-profiling-datasets" title="Permalink to this headline">¶</a></h1>
+<section id="hpctoolkit">
+<h2>HPCToolkit<a class="headerlink" href="#hpctoolkit" title="Permalink to this headline">¶</a></h2>
+<p>HPCToolkit can be installed using <a class="reference external" href="https://spack.io">Spack</a> or manually.
+Instructions to build HPCToolkit manually can be found at
+<a class="reference external" href="http://hpctoolkit.org/software-instructions.html">http://hpctoolkit.org/software-instructions.html</a>.</p>
+<p>You can see a basic example of how to use HPCToolkit and generate performance
+data below.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mpirun -np &lt;num_ranks&gt; hpcrun &lt;hpcrun_args&gt; ./program.exe &lt;program_args&gt;
+</pre></div>
+</div>
+<p>This command generates a “measurements” directory. Hatchet cannot read
+this natively and requires another step to generate a “database” directory
+using <code class="docutils literal notranslate"><span class="pre">hpcprof-mpi</span></code> as described below.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>hpcstruct ./program.exe
+<span class="gp">$ </span>mpirun -np <span class="m">1</span> hpcprof-mpi --metric-db<span class="o">=</span>yes -S ./program.exe.struct -I &lt;path_to_src&gt; &lt;measurements-directory&gt;
+</pre></div>
+</div>
+<p>The first command generates a struct file for the executable <code class="docutils literal notranslate"><span class="pre">program.exe</span></code>.
+This is provided as one of the arguments in the second command along with
+pointers to the source code and the generated measurements directory.  You must
+add the <code class="docutils literal notranslate"><span class="pre">--metric-db=yes</span></code> option to <code class="docutils literal notranslate"><span class="pre">hpcprof-mpi</span></code> to generate the database
+directory in the format recognizable by hatchet.</p>
+<p>You can specify the events you want to record as arguments to <code class="docutils literal notranslate"><span class="pre">hpcrun</span></code>. For
+example: <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">CPUTIME&#64;5000</span></code> or <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">PAPI_TOT_CYC&#64;5000000</span> <span class="pre">-e</span> <span class="pre">PAPI_TOT_INS</span> <span class="pre">-e</span>
+<span class="pre">PAPI_L2_TCM</span> <span class="pre">-e</span> <span class="pre">PAPI_BR_INS</span></code>.</p>
+<p>If you want to record data only for the main thread (0) and not for other
+helper threads, you can set this environment variable: <code class="docutils literal notranslate"><span class="pre">export</span>
+<span class="pre">HPCRUN_IGNORE_THREAD=1,2,..</span></code>.</p>
+<p>More information information about HPCToolkit can be found at HPCToolkit’s
+<a class="reference external" href="http://hpctoolkit.org/documentation.html">documentation page</a>.</p>
+</section>
+<section id="caliper">
+<h2>Caliper<a class="headerlink" href="#caliper" title="Permalink to this headline">¶</a></h2>
+<p>Caliper can be installed using <a class="reference external" href="https://spack.io">Spack</a> or manually from its
+<a class="reference external" href="https://github.com/LLNL/Caliper">GitHub repository</a>. Instructions to build
+Caliper manually can be found in its <a class="reference external" href="https://software.llnl.gov/Caliper/build.html">documentation</a>.</p>
+<p>To record performance profiles using Caliper, you need to include <code class="docutils literal notranslate"><span class="pre">cali.h</span></code>
+and call the <code class="docutils literal notranslate"><span class="pre">cali_init()</span></code> function in your source code.  You also need to
+link the Caliper library in your executable or load it using <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code>.
+Information about basic Caliper usage can be found in the <a class="reference external" href="https://software.llnl.gov/Caliper/CaliperBasics.html">Caliper
+documentation</a>.</p>
+<p>To generate profiling data, you can use Caliper’s <a class="reference external" href="https://software.llnl.gov/Caliper/BuiltinConfigurations.htm">built-in profiling
+configurations</a> customized for Hatchet: <code class="docutils literal notranslate"><span class="pre">hatchet-region-profile</span></code> or
+<code class="docutils literal notranslate"><span class="pre">hatchet-sample-profile</span></code>. The former generates a profile based on user
+annotations in the code while the latter generates a call path profile (similar
+to HPCToolkit’s output).  If you want to use one of the built-in
+configurations, you should set the <code class="docutils literal notranslate"><span class="pre">CALI_CONFIG</span></code> environment variable (e.g.
+<code class="docutils literal notranslate"><span class="pre">CALI_CONFIG=hatchet-sample-profile</span></code>).</p>
+<p>Alternatively, you can use a custom Caliper .config file (default:
+caliper.config).  If you create your own .config file, you can set the
+CALI_CONFIG_FILE environment variable to point to it.  Two sample
+caliper.config files are presented below.  Other example configuration files
+can be found in the Caliper <a class="reference external" href="https://github.com/LLNL/Caliper/tree/master/examples/configs">GitHub repository</a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">CALI_SERVICES_ENABLE=aggregate,event,mpi,mpireport,timestamp</span>
+<span class="go">CALI_EVENT_TRIGGER=annotation,function,loop,mpi.function</span>
+<span class="go">CALI_TIMER_SNAPSHOT_DURATION=true</span>
+<span class="go">CALI_AGGREGATE_KEY=prop:nested,mpi.rank</span>
+<span class="go">CALI_MPI_WHITELIST=MPI_Send,MPI_Recv,MPI_Isend,MPI_Irecv,MPI_Wait,MPI_Waitall,MPI_Bcast,MPI_Reduce,MPI_Allreduce,MPI_Barrier</span>
+<span class="go">CALI_MPIREPORT_CONFIG=&quot;SELECT annotation,function,loop,mpi.function,mpi.rank,sum(sum#time.duration),inclusive_sum(sum#time.duration) group by mpi.rank,prop:nested format json-split&quot;</span>
+<span class="go">CALI_MPIREPORT_FILENAME=&quot;lulesh-annotation-profile.json&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">CALI_SERVICES_ENABLE=aggregate,callpath,mpi,mpireport,sampler,symbollookup,timestamp</span>
+<span class="go">CALI_SYMBOLLOOKUP_LOOKUP_MODULE=true</span>
+<span class="go">CALI_TIMER_SNAPSHOT_DURATION=true</span>
+<span class="go">CALI_CALIPER_FLUSH_ON_EXIT=false</span>
+<span class="go">CALI_SAMPLER_FREQUENCY=200</span>
+<span class="go">CALI_CALLPATH_SKIP_FRAMES=4</span>
+<span class="go">CALI_AGGREGATE_KEY=callpath.address,cali.sampler.pc,mpi.rank</span>
+<span class="go">CALI_MPIREPORT_CONFIG=&quot;select source.function#callpath.address,sourceloc#cali.sampler.pc,mpi.rank,sum(sum#time.duration),sum(count),module#cali.sampler.pc group by source.function#callpath.address,sourceloc#cali.sampler.pc,mpi.rank,module#cali.sampler.pc format json-split&quot;</span>
+<span class="go">CALI_MPIREPORT_FILENAME=&quot;cpi-sample-callpathprofile.json&quot;</span>
+</pre></div>
+</div>
+<p>You can read more about Caliper services in the <a class="reference external" href="https://software.llnl.gov/Caliper/services.html">Caliper documentation</a>. Hatchet can read two Caliper outputs: the native .cali files and the split-JSON format (.json files).</p>
+</section>
+<section id="tau">
+<h2>TAU<a class="headerlink" href="#tau" title="Permalink to this headline">¶</a></h2>
+<p>TAU can be installed using <a class="reference external" href="https://spack.io">Spack</a> or manually via
+instructions in its <a class="reference external" href="https://www.cs.uoregon.edu/research/tau/tau-installguide.pdf">install guide</a>.</p>
+<p>You can instrument and/or sample your program using TAU. To instrument your
+program, you can compile it with <code class="docutils literal notranslate"><span class="pre">tau_cc.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">tau_cxx.sh</span></code> like any other
+compiler. To sample your program, you can run it with <code class="docutils literal notranslate"><span class="pre">tau_exec</span></code>.</p>
+<p>Below, you can find the required environment variables to sample your program
+and get call path data using TAU. You can both instrument and sample your
+program using
+these environment variables and <code class="docutils literal notranslate"><span class="pre">tau_exec</span></code> after compiling your program with <code class="docutils literal notranslate"><span class="pre">tau_cc/cxx.sh</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">TAU_PROFILE=1</span>
+<span class="go">TAU_CALLPATH=1</span>
+<span class="go">TAU_SAMPLING=1</span>
+<span class="go">TAU_CALLPATH_DEPTH=100</span>
+<span class="go">TAU_EBS_UNWIND=1</span>
+<span class="gp gp-VirtualEnv">(optional)</span> <span class="go">TAU_METRICS=&lt;TAU/PAPI_metrics&gt;</span>
+<span class="gp gp-VirtualEnv">(optional)</span> <span class="go">PROFILEDIR=&lt;directore_name_for_profile_data&gt;</span>
+</pre></div>
+</div>
+<p>After setting these environment variables, you can run your program as:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mpirun -np &lt;num_ranks&gt; tau_exec -T mpi,openmp -ebs ./program.exe &lt;program_args&gt;
+</pre></div>
+</div>
+<p>More information about using TAU can be found in its <a class="reference external" href="https://www.cs.uoregon.edu/research/tau/tau-usersguide.pdf">user guide</a>.</p>
+</section>
+<section id="timemory">
+<h2>timemory<a class="headerlink" href="#timemory" title="Permalink to this headline">¶</a></h2>
+<p>Timemory can be installed using <a class="reference external" href="https://spack.io">Spack</a> or manually as
+suggested in its <a class="reference external" href="https://timemory.readthedocs.io/en/develop/installation.html">documentation</a>.</p>
+<p>Timemory can perform both runtime instrumentation and binary rewriting, but
+recommends using binary rewriting for distributed memory parallelism.  To use
+binary rewriting, you need to first generate an instrumented executable and
+then run that instrumented executable as below.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>timemory-run &lt;timemory-run_options&gt; -o &lt;instrumented_executable&gt; --mpi -- &lt;executable&gt;
+<span class="gp">$ </span>mpirun -np &lt;num_ranks&gt; ./&lt;instrumented_executable&gt;
+</pre></div>
+</div>
+<p>More information about how to use timemory can be found at <a class="reference external" href="https://timemory.readthedocs.io/en/develop/index.html">https://timemory.readthedocs.io/en/develop/index.html</a>.</p>
+</section>
+<section id="pyinstrument">
+<h2>pyinstrument<a class="headerlink" href="#pyinstrument" title="Permalink to this headline">¶</a></h2>
+<p>Hatchet can read <a class="reference external" href="https://github.com/joerick/pyinstrument">pyinstrument</a> JSON
+files which can be generated</p>
+<p>by using its Python API or using the command line:</p>
+<p><strong>Command line</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pyinstrument -r json -o &lt;output.json&gt; ./program.py
+</pre></div>
+</div>
+<p><strong>Python API</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyinstrument</span> <span class="kn">import</span> <span class="n">Profiler</span>
+<span class="kn">from</span> <span class="nn">pyinstrument.renderers</span> <span class="kn">import</span> <span class="n">JSONRenderer</span>
+<span class="n">profiler</span> <span class="o">=</span> <span class="n">Profiler</span><span class="p">()</span>
+
+<span class="n">profiler</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="c1"># do some work</span>
+<span class="n">profiler</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">JSONRenderer</span><span class="p">()</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">profiler</span><span class="o">.</span><span class="n">last_session</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="query_lang.html" class="btn btn-neutral float-left" title="Query Language" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="analysis_examples.html" class="btn btn-neutral float-right" title="Analysis Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, LLNS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

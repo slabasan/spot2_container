@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hatchet.readers package &mdash; SPOT 0.5.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="hatchet.util package" href="hatchet.util.html" />
+    <link rel="prev" title="hatchet.external.roundtrip.roundtrip package" href="hatchet.external.roundtrip.roundtrip.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> SPOT
+          </a>
+              <div class="version">
+                0.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_lang.html">Query Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_generation.html">Generating Profiling Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analysis_examples.html">Analysis Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_tutorial.html">Basic Tutorial: Hatchet 101</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">Publications and Presentations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="hatchet.html">Hatchet API Docs</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="hatchet.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="hatchet.cython_modules.html">hatchet.cython_modules package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.external.html">hatchet.external package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">hatchet.readers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.caliper_native_reader">hatchet.readers.caliper_native_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.caliper_reader">hatchet.readers.caliper_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.cprofile_reader">hatchet.readers.cprofile_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.dataframe_reader">hatchet.readers.dataframe_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.gprof_dot_reader">hatchet.readers.gprof_dot_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.hdf5_reader">hatchet.readers.hdf5_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.hpctoolkit_reader">hatchet.readers.hpctoolkit_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.literal_reader">hatchet.readers.literal_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.pyinstrument_reader">hatchet.readers.pyinstrument_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.spotdb_reader">hatchet.readers.spotdb_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.tau_reader">hatchet.readers.tau_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers.timemory_reader">hatchet.readers.timemory_reader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.readers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.util.html">hatchet.util package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.vis.html">hatchet.vis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.writers.html">hatchet.writers package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.frame">hatchet.frame module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.graph">hatchet.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.graphframe">hatchet.graphframe module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.node">hatchet.node module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.query">hatchet.query module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.version">hatchet.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPOT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="hatchet.html">hatchet package</a> &raquo;</li>
+      <li>hatchet.readers package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/hatchet.readers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hatchet-readers-package">
+<h1>hatchet.readers package<a class="headerlink" href="#hatchet-readers-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-hatchet.readers.caliper_native_reader">
+<span id="hatchet-readers-caliper-native-reader-module"></span><h2>hatchet.readers.caliper_native_reader module<a class="headerlink" href="#module-hatchet.readers.caliper_native_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.caliper_native_reader.CaliperNativeReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.caliper_native_reader.</span></span><span class="sig-name descname"><span class="pre">CaliperNativeReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename_or_caliperreader</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.caliper_native_reader.CaliperNativeReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Read in a native <cite>.cali</cite> file using Caliper’s python reader.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.caliper_native_reader.CaliperNativeReader.create_graph">
+<span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'path'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.caliper_native_reader.CaliperNativeReader.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.caliper_native_reader.CaliperNativeReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.caliper_native_reader.CaliperNativeReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the caliper records to extract the calling context tree.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.caliper_native_reader.CaliperNativeReader.read_metrics">
+<span class="sig-name descname"><span class="pre">read_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'path'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.caliper_native_reader.CaliperNativeReader.read_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.caliper_reader">
+<span id="hatchet-readers-caliper-reader-module"></span><h2>hatchet.readers.caliper_reader module<a class="headerlink" href="#module-hatchet.readers.caliper_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.caliper_reader.CaliperReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.caliper_reader.</span></span><span class="sig-name descname"><span class="pre">CaliperReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename_or_stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.caliper_reader.CaliperReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Read in a Caliper file (<cite>cali</cite> or split JSON) or file-like object.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.caliper_reader.CaliperReader.create_graph">
+<span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.caliper_reader.CaliperReader.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.caliper_reader.CaliperReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.caliper_reader.CaliperReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the caliper JSON file to extract the calling context tree.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.caliper_reader.CaliperReader.read_json_sections">
+<span class="sig-name descname"><span class="pre">read_json_sections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.caliper_reader.CaliperReader.read_json_sections" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.cprofile_reader">
+<span id="hatchet-readers-cprofile-reader-module"></span><h2>hatchet.readers.cprofile_reader module<a class="headerlink" href="#module-hatchet.readers.cprofile_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.CProfileReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.cprofile_reader.</span></span><span class="sig-name descname"><span class="pre">CProfileReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.cprofile_reader.CProfileReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.CProfileReader.create_graph">
+<span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.cprofile_reader.CProfileReader.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs the creation of our node graph</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.CProfileReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.cprofile_reader.CProfileReader.read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.NameData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.cprofile_reader.</span></span><span class="sig-name descname"><span class="pre">NameData</span></span><a class="headerlink" href="#hatchet.readers.cprofile_reader.NameData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Faux Enum for python</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.NameData.FILE">
+<span class="sig-name descname"><span class="pre">FILE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#hatchet.readers.cprofile_reader.NameData.FILE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.NameData.FNCNAME">
+<span class="sig-name descname"><span class="pre">FNCNAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#hatchet.readers.cprofile_reader.NameData.FNCNAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.NameData.LINE">
+<span class="sig-name descname"><span class="pre">LINE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#hatchet.readers.cprofile_reader.NameData.LINE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.StatData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.cprofile_reader.</span></span><span class="sig-name descname"><span class="pre">StatData</span></span><a class="headerlink" href="#hatchet.readers.cprofile_reader.StatData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Faux Enum for python</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.StatData.EXCTIME">
+<span class="sig-name descname"><span class="pre">EXCTIME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#hatchet.readers.cprofile_reader.StatData.EXCTIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.StatData.INCTIME">
+<span class="sig-name descname"><span class="pre">INCTIME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#hatchet.readers.cprofile_reader.StatData.INCTIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.StatData.NATIVECALLS">
+<span class="sig-name descname"><span class="pre">NATIVECALLS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#hatchet.readers.cprofile_reader.StatData.NATIVECALLS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.StatData.NUMCALLS">
+<span class="sig-name descname"><span class="pre">NUMCALLS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#hatchet.readers.cprofile_reader.StatData.NUMCALLS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.StatData.SRCNODE">
+<span class="sig-name descname"><span class="pre">SRCNODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#hatchet.readers.cprofile_reader.StatData.SRCNODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hatchet.readers.cprofile_reader.print_incomptable_msg">
+<span class="sig-prename descclassname"><span class="pre">hatchet.readers.cprofile_reader.</span></span><span class="sig-name descname"><span class="pre">print_incomptable_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stats_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.cprofile_reader.print_incomptable_msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function which makes the syntax cleaner in Profiler.write_to_file().</p>
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.dataframe_reader">
+<span id="hatchet-readers-dataframe-reader-module"></span><h2>hatchet.readers.dataframe_reader module<a class="headerlink" href="#module-hatchet.readers.dataframe_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.dataframe_reader.DataframeReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.dataframe_reader.</span></span><span class="sig-name descname"><span class="pre">DataframeReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.dataframe_reader.DataframeReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract Base Class for reading in checkpointing files.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.dataframe_reader.DataframeReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.dataframe_reader.DataframeReader.read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="hatchet.readers.dataframe_reader.InvalidDataFrameIndex">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.dataframe_reader.</span></span><span class="sig-name descname"><span class="pre">InvalidDataFrameIndex</span></span><a class="headerlink" href="#hatchet.readers.dataframe_reader.InvalidDataFrameIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when the DataFrame index is of an invalid type.</p>
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.gprof_dot_reader">
+<span id="hatchet-readers-gprof-dot-reader-module"></span><h2>hatchet.readers.gprof_dot_reader module<a class="headerlink" href="#module-hatchet.readers.gprof_dot_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.gprof_dot_reader.GprofDotReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.gprof_dot_reader.</span></span><span class="sig-name descname"><span class="pre">GprofDotReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.gprof_dot_reader.GprofDotReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Read in gprof/callgrind output in dot format generated by gprof2dot.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.gprof_dot_reader.GprofDotReader.create_graph">
+<span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.gprof_dot_reader.GprofDotReader.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the DOT files to create a graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.gprof_dot_reader.GprofDotReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.gprof_dot_reader.GprofDotReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the DOT file generated by gprof2dot to create a graphframe. The DOT file
+contains a call graph.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.hdf5_reader">
+<span id="hatchet-readers-hdf5-reader-module"></span><h2>hatchet.readers.hdf5_reader module<a class="headerlink" href="#module-hatchet.readers.hdf5_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.hdf5_reader.HDF5Reader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.hdf5_reader.</span></span><span class="sig-name descname"><span class="pre">HDF5Reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hdf5_reader.HDF5Reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#hatchet.readers.dataframe_reader.DataframeReader" title="hatchet.readers.dataframe_reader.DataframeReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">hatchet.readers.dataframe_reader.DataframeReader</span></code></a></p>
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.hpctoolkit_reader">
+<span id="hatchet-readers-hpctoolkit-reader-module"></span><h2>hatchet.readers.hpctoolkit_reader module<a class="headerlink" href="#module-hatchet.readers.hpctoolkit_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.HPCToolkitReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.hpctoolkit_reader.</span></span><span class="sig-name descname"><span class="pre">HPCToolkitReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.HPCToolkitReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Read in the various sections of an HPCToolkit experiment.xml file and
+metric-db files.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.HPCToolkitReader.count_cpu_threads_per_rank">
+<span class="sig-name descname"><span class="pre">count_cpu_threads_per_rank</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.HPCToolkitReader.count_cpu_threads_per_rank" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.HPCToolkitReader.create_node_dict">
+<span class="sig-name descname"><span class="pre">create_node_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hnode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.HPCToolkitReader.create_node_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dict with all the node attributes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.HPCToolkitReader.fill_tables">
+<span class="sig-name descname"><span class="pre">fill_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.HPCToolkitReader.fill_tables" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read certain sections of the experiment.xml file to create dicts of load
+modules, src_files, procedure_names, and metric_names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.HPCToolkitReader.parse_xml_children">
+<span class="sig-name descname"><span class="pre">parse_xml_children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hnode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.HPCToolkitReader.parse_xml_children" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses all children of an XML node.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.HPCToolkitReader.parse_xml_node">
+<span class="sig-name descname"><span class="pre">parse_xml_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_nid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hparent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.HPCToolkitReader.parse_xml_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses an XML node and its children recursively.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.HPCToolkitReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.HPCToolkitReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the experiment.xml file to extract the calling context tree and create
+a dataframe out of it. Then merge the two dataframes to create the final
+dataframe.</p>
+<dl class="simple">
+<dt>Return:</dt><dd><p>(GraphFrame): new GraphFrame with HPCToolkit data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.HPCToolkitReader.read_all_metricdb_files">
+<span class="sig-name descname"><span class="pre">read_all_metricdb_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.HPCToolkitReader.read_all_metricdb_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read all the metric-db files and create a dataframe with num_nodes X
+num_metricdb_files rows and num_metrics columns. Three additional columns
+store the node id, MPI process rank, and thread id (if applicable).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.init_shared_array">
+<span class="sig-prename descclassname"><span class="pre">hatchet.readers.hpctoolkit_reader.</span></span><span class="sig-name descname"><span class="pre">init_shared_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buf_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.init_shared_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize shared array.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hatchet.readers.hpctoolkit_reader.read_metricdb_file">
+<span class="sig-prename descclassname"><span class="pre">hatchet.readers.hpctoolkit_reader.</span></span><span class="sig-name descname"><span class="pre">read_metricdb_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.hpctoolkit_reader.read_metricdb_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a single metricdb file into a 1D array.</p>
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.literal_reader">
+<span id="hatchet-readers-literal-reader-module"></span><h2>hatchet.readers.literal_reader module<a class="headerlink" href="#module-hatchet.readers.literal_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.literal_reader.LiteralReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.literal_reader.</span></span><span class="sig-name descname"><span class="pre">LiteralReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.literal_reader.LiteralReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create a GraphFrame from a list of dictionaries.</p>
+<p>TODO: calculate inclusive metrics automatically.</p>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dag_ldict = [</span>
+<span class="go">    {</span>
+<span class="go">        &quot;frame&quot;: {&quot;name&quot;: &quot;A&quot;, &quot;type&quot;: &quot;function&quot;},</span>
+<span class="go">        &quot;metrics&quot;: {&quot;time (inc)&quot;: 30.0, &quot;time&quot;: 0.0},</span>
+<span class="go">        &quot;children&quot;: [</span>
+<span class="go">            {</span>
+<span class="go">                &quot;frame&quot;: {&quot;name&quot;: &quot;B&quot;,  &quot;type&quot;: &quot;function&quot;},</span>
+<span class="go">                &quot;metrics&quot;: {&quot;time (inc)&quot;: 11.0, &quot;time&quot;: 5.0},</span>
+<span class="go">                &quot;children&quot;: [</span>
+<span class="go">                    {</span>
+<span class="go">                        &quot;frame&quot;: {&quot;name&quot;: &quot;C&quot;, &quot;type&quot;: &quot;function&quot;},</span>
+<span class="go">                        &quot;metrics&quot;: {&quot;time (inc)&quot;: 6.0, &quot;time&quot;: 5.0},</span>
+<span class="go">                        &quot;children&quot;: [</span>
+<span class="go">                            {</span>
+<span class="go">                                &quot;frame&quot;: {&quot;name&quot;: &quot;D&quot;, &quot;type&quot;: &quot;function&quot;},</span>
+<span class="go">                                &quot;metrics&quot;: {&quot;time (inc)&quot;: 1.0, &quot;time&quot;: 1.0},</span>
+<span class="go">                            }</span>
+<span class="go">                        ],</span>
+<span class="go">                    }</span>
+<span class="go">                ],</span>
+<span class="go">            },</span>
+<span class="go">            {</span>
+<span class="go">                &quot;frame&quot;: {&quot;name&quot;: &quot;E&quot;, &quot;type&quot;: &quot;function&quot;},</span>
+<span class="go">                &quot;metrics&quot;: {&quot;time (inc)&quot;: 19.0, &quot;time&quot;: 10.0},</span>
+<span class="go">                &quot;children&quot;: [</span>
+<span class="go">                    {</span>
+<span class="go">                        &quot;frame&quot;: {&quot;name&quot;: &quot;H&quot;, &quot;type&quot;: &quot;function&quot;},</span>
+<span class="go">                        &quot;metrics&quot;: {&quot;time (inc)&quot;: 9.0, &quot;time&quot;: 9.0}</span>
+<span class="go">                    }</span>
+<span class="go">                ],</span>
+<span class="go">            },</span>
+<span class="go">        ],</span>
+<span class="go">    }</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Return:</dt><dd><p>(GraphFrame): graphframe containing data from dictionaries</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.literal_reader.LiteralReader.parse_node_literal">
+<span class="sig-name descname"><span class="pre">parse_node_literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_to_node_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_dicts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hparent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seen_nids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.literal_reader.LiteralReader.parse_node_literal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create node_dict for one node and then call the function
+recursively on all children.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.literal_reader.LiteralReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.literal_reader.LiteralReader.read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.pyinstrument_reader">
+<span id="hatchet-readers-pyinstrument-reader-module"></span><h2>hatchet.readers.pyinstrument_reader module<a class="headerlink" href="#module-hatchet.readers.pyinstrument_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.pyinstrument_reader.PyinstrumentReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.pyinstrument_reader.</span></span><span class="sig-name descname"><span class="pre">PyinstrumentReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.pyinstrument_reader.PyinstrumentReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.pyinstrument_reader.PyinstrumentReader.create_graph">
+<span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.pyinstrument_reader.PyinstrumentReader.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.pyinstrument_reader.PyinstrumentReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.pyinstrument_reader.PyinstrumentReader.read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.spotdb_reader">
+<span id="hatchet-readers-spotdb-reader-module"></span><h2>hatchet.readers.spotdb_reader module<a class="headerlink" href="#module-hatchet.readers.spotdb_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.spotdb_reader.SpotDBReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.spotdb_reader.</span></span><span class="sig-name descname"><span class="pre">SpotDBReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_of_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Total</span> <span class="pre">time</span> <span class="pre">(inc)'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.spotdb_reader.SpotDBReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Import multiple runs as graph frames from a SpotDB instance</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.spotdb_reader.SpotDBReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.spotdb_reader.SpotDBReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read given runs from SpotDB</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>List of GraphFrames, one for each entry that was found</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.spotdb_reader.SpotDatasetReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.spotdb_reader.</span></span><span class="sig-name descname"><span class="pre">SpotDatasetReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regionprofile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.spotdb_reader.SpotDatasetReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Reads a (single-run) dataset from SpotDB</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.spotdb_reader.SpotDatasetReader.create_graph">
+<span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.spotdb_reader.SpotDatasetReader.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the graph. Fills in df_data and metric_columns.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.spotdb_reader.SpotDatasetReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Total</span> <span class="pre">time</span> <span class="pre">(inc)'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.spotdb_reader.SpotDatasetReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create GraphFrame for the given Spot dataset.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.tau_reader">
+<span id="hatchet-readers-tau-reader-module"></span><h2>hatchet.readers.tau_reader module<a class="headerlink" href="#module-hatchet.readers.tau_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.tau_reader.TAUReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.tau_reader.</span></span><span class="sig-name descname"><span class="pre">TAUReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.tau_reader.TAUReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Read in a profile generated using TAU.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.tau_reader.TAUReader.create_graph">
+<span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.tau_reader.TAUReader.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.tau_reader.TAUReader.create_node_dict">
+<span class="sig-name descname"><span class="pre">create_node_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.tau_reader.TAUReader.create_node_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.tau_reader.TAUReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.tau_reader.TAUReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the TAU profile file to extract the calling context tree.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers.timemory_reader">
+<span id="hatchet-readers-timemory-reader-module"></span><h2>hatchet.readers.timemory_reader module<a class="headerlink" href="#module-hatchet.readers.timemory_reader" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.readers.timemory_reader.TimemoryReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.readers.timemory_reader.</span></span><span class="sig-name descname"><span class="pre">TimemoryReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.timemory_reader.TimemoryReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Read in timemory JSON output</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.timemory_reader.TimemoryReader.create_graph">
+<span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.timemory_reader.TimemoryReader.create_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create graph and dataframe</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.readers.timemory_reader.TimemoryReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.readers.timemory_reader.TimemoryReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read timemory json.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.readers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-hatchet.readers" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hatchet.external.roundtrip.roundtrip.html" class="btn btn-neutral float-left" title="hatchet.external.roundtrip.roundtrip package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hatchet.util.html" class="btn btn-neutral float-right" title="hatchet.util package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, LLNS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

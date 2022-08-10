@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hatchet.external package &mdash; SPOT 0.5.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="hatchet.external.roundtrip package" href="hatchet.external.roundtrip.html" />
+    <link rel="prev" title="hatchet.cython_modules.libs package" href="hatchet.cython_modules.libs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> SPOT
+          </a>
+              <div class="version">
+                0.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../query_lang.html">Query Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_generation.html">Generating Profiling Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analysis_examples.html">Analysis Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_tutorial.html">Basic Tutorial: Hatchet 101</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">Publications and Presentations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="hatchet.html">Hatchet API Docs</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="hatchet.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="hatchet.cython_modules.html">hatchet.cython_modules package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">hatchet.external package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.external.console">hatchet.external.console module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-hatchet.external">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.readers.html">hatchet.readers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.util.html">hatchet.util package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.vis.html">hatchet.vis package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.writers.html">hatchet.writers package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.frame">hatchet.frame module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.graph">hatchet.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.graphframe">hatchet.graphframe module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.node">hatchet.node module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.query">hatchet.query module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet.version">hatchet.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.html#module-hatchet">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPOT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="hatchet.html">hatchet package</a> &raquo;</li>
+      <li>hatchet.external package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/hatchet.external.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hatchet-external-package">
+<h1>hatchet.external package<a class="headerlink" href="#hatchet-external-package" title="Permalink to this headline">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hatchet.external.roundtrip.html">hatchet.external.roundtrip package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.external.roundtrip.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hatchet.external.roundtrip.roundtrip.html">hatchet.external.roundtrip.roundtrip package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.external.roundtrip.roundtrip.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.external.roundtrip.roundtrip.html#hatchet-external-roundtrip-roundtrip-manager-module">hatchet.external.roundtrip.roundtrip.manager module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.external.roundtrip.roundtrip.html#hatchet-external-roundtrip-roundtrip-version-module">hatchet.external.roundtrip.roundtrip.version module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hatchet.external.roundtrip.roundtrip.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.external.roundtrip.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.external.roundtrip.html#hatchet-external-roundtrip-setup-module">hatchet.external.roundtrip.setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hatchet.external.roundtrip.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-hatchet.external.console">
+<span id="hatchet-external-console-module"></span><h2>hatchet.external.console module<a class="headerlink" href="#module-hatchet.external.console" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hatchet.external.console.</span></span><span class="sig-name descname"><span class="pre">ConsoleRenderer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unicode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_disabled">
+<span class="sig-name descname"><span class="pre">colors_disabled</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;hatchet.external.console.ConsoleRenderer.colors_disabled</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_disabled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">colors_enabled</span></span><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled.bg_white_255">
+<span class="sig-name descname"><span class="pre">bg_white_255</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[48;5;246m'</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled.bg_white_255" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled.blue">
+<span class="sig-name descname"><span class="pre">blue</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[34m'</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled.blue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled.colormap">
+<span class="sig-name descname"><span class="pre">colormap</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled.colormap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled.cyan">
+<span class="sig-name descname"><span class="pre">cyan</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[36m'</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled.cyan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled.dark_gray_255">
+<span class="sig-name descname"><span class="pre">dark_gray_255</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[38;5;232m'</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled.dark_gray_255" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled.end">
+<span class="sig-name descname"><span class="pre">end</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[0m'</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled.end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled.faint">
+<span class="sig-name descname"><span class="pre">faint</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[2m'</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled.faint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled.left">
+<span class="sig-name descname"><span class="pre">left</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[38;5;160m'</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled.left" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.colors_enabled.right">
+<span class="sig-name descname"><span class="pre">right</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\x1b[38;5;28m'</span></em><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.colors_enabled.right" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.render" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.render_frame">
+<span class="sig-name descname"><span class="pre">render_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.render_frame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.render_legend">
+<span class="sig-name descname"><span class="pre">render_legend</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.render_legend" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hatchet.external.console.ConsoleRenderer.render_preamble">
+<span class="sig-name descname"><span class="pre">render_preamble</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hatchet.external.console.ConsoleRenderer.render_preamble" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-hatchet.external">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-hatchet.external" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hatchet.cython_modules.libs.html" class="btn btn-neutral float-left" title="hatchet.cython_modules.libs package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hatchet.external.roundtrip.html" class="btn btn-neutral float-right" title="hatchet.external.roundtrip package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, LLNS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

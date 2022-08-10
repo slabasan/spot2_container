@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Query Language &mdash; SPOT 0.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generating Profiling Datasets" href="data_generation.html" />
+    <link rel="prev" title="User Guide" href="user_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SPOT
+          </a>
+              <div class="version">
+                0.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Query Language</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#high-level-api">High-Level API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wildcards">Wildcards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filters">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#abstract-graph-nodes">Abstract Graph Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#full-queries">Full Queries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#low-level-api">Low-Level API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Wildcards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Abstract Graph Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Full Queries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#compound-queries">Compound Queries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#abstractquery">AbstractQuery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#naryquery">NaryQuery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#andquery">AndQuery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orquery">OrQuery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xorquery">XorQuery</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_generation.html">Generating Profiling Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_examples.html">Analysis Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_tutorial.html">Basic Tutorial: Hatchet 101</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications and Presentations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="source/hatchet.html">Hatchet API Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPOT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Query Language</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/query_lang.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="query-language">
+<h1>Query Language<a class="headerlink" href="#query-language" title="Permalink to this headline">¶</a></h1>
+<p>As of version 1.2.0, Hatchet has a filtering query language that allows users to filter GraphFrames based on caller-callee relationships between nodes in the Graph. This query language contains two APIs: a high-level API that is expressed using built-in Python data types (e.g., lists, dictionaries, strings) and a low-level API that is expressed using Python callables.</p>
+<p>Regardless of API, queries in Hatchet represent abstract paths, or path patterns, within the Graph being filtered. When filtering on a query, Hatchet will identify all paths in the Graph that match the query. Then, it will return a new GraphFrame object containing only the nodes contained in the matched paths. A query is represented as a list of <em>abstract graph nodes</em>. Each <em>abstract graph node</em> is made of two parts:</p>
+<ul class="simple">
+<li><p>A wildcard that specifies the number of real nodes to match to the abstract node</p></li>
+<li><p>A filter that is used to determine whether a real node matches the abstract node</p></li>
+</ul>
+<p>The primary differences between the two APIs are the representation of filters, how wildcards and filters are combined into <em>abstract graph nodes</em>, and how <em>abstract graph nodes</em> are combined into a full query.</p>
+<p>The following sections will describe the specifications for queries in both APIs and provide examples of how to use the query language.</p>
+<section id="high-level-api">
+<h2>High-Level API<a class="headerlink" href="#high-level-api" title="Permalink to this headline">¶</a></h2>
+<p>The high-level API for Hatchet’s query language is designed to allow users to quickly write simple queries. It has a simple syntax based on built-in Python data types (e.g., lists, dictionaries, strings). The following subsections will describe each component of high-level queries. After creating a query, it can be used to filter a GraphFrame by passing it to the <code class="code docutils literal notranslate"><span class="pre">GraphFrame.filter</span></code> function as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">filtered_gf</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="wildcards">
+<h3>Wildcards<a class="headerlink" href="#wildcards" title="Permalink to this headline">¶</a></h3>
+<p>Wildcards in the high-level API are specified by one of four possible values:</p>
+<ul class="simple">
+<li><p>The string <code class="code docutils literal notranslate"><span class="pre">&quot;.&quot;</span></code>, which means “match 1 node”</p></li>
+<li><p>The string <code class="code docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code>, which means “match 0 or more nodes”</p></li>
+<li><p>The string <code class="code docutils literal notranslate"><span class="pre">&quot;+&quot;</span></code>, which means “match 1 or more nodes”</p></li>
+<li><p>An integer, which means “match exactly that number of nodes” (integer 1 is equivalent to <code class="code docutils literal notranslate"><span class="pre">&quot;.&quot;</span></code>)</p></li>
+</ul>
+</section>
+<section id="filters">
+<h3>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h3>
+<p>Filters in the high-level API are specified by Python dictionaries. These dictionaries are keyed on the names of <em>node attributes</em>. These attributes’ names are the same as the column names from the DataFrame associated with the GraphFrame being filtered (which can be obtained with <code class="code docutils literal notranslate"><span class="pre">gf.dataframe</span></code>). There are also two special attribute names:</p>
+<ul class="simple">
+<li><p><cite>depth</cite>, which filters on the depth of the node in the Graph</p></li>
+<li><p><cite>node_id</cite>, which filters on the node’s unique identifier within the GraphFrame</p></li>
+</ul>
+<p>The values in a high-level API filter dictionary define the conditions that must be passed to pass the filter. Their data types depend on the data type of the corresponding attribute. The table below describes what value data types are valid for different attribute data types.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 10%" />
+<col style="width: 37%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute Data Type</p></th>
+<th class="head"><p>Example Attributes</p></th>
+<th class="head"><p>Valid Filter Value Types</p></th>
+<th class="head"><p>Description of Condition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="2"><p>Real (integer or float)</p></td>
+<td rowspan="2"><p><cite>time</cite></p>
+<p><cite>time (inc)</cite></p>
+</td>
+<td><p>Real (integer or float)</p></td>
+<td><p>Attribute value exactly equals filter value</p></td>
+</tr>
+<tr class="row-odd"><td><p>String starting with comparison operator</p></td>
+<td><p>Attribute value must pass comparison described in filter value</p></td>
+</tr>
+<tr class="row-even"><td><p>String</p></td>
+<td><p><cite>name</cite></p></td>
+<td><p>Regex String (see <a class="reference external" href="https://docs.python.org/3/library/re.html">Python re module</a> for details)</p></td>
+<td><p>Attribute must match filter value (passed to <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match">re.match</a>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>The values in a high-level API filter dictionary can also be iterables (e.g., lists, tuples) of the valid values defined in the table above.</p>
+<p>In the high-level API, all conditions (key-value pairs, including conditions contained in a list value) in a filter must pass for the a real node to match the corresponding <em>abstract graph node</em>.</p>
+</section>
+<section id="abstract-graph-nodes">
+<h3>Abstract Graph Nodes<a class="headerlink" href="#abstract-graph-nodes" title="Permalink to this headline">¶</a></h3>
+<p>In the high-level API, <em>abstract graph nodes</em> are represented by Python tuples containing a single wildcard and a single filter. Alternatively, an <em>abstract graph node</em> can be represented by only a single . When only providing a wildcard or a filter (and not both), the default is used for the other component. The defaults are as follows:</p>
+<ul class="simple">
+<li><p>Wildcard: <code class="code docutils literal notranslate"><span class="pre">&quot;.&quot;</span></code> (match 1 node)</p></li>
+<li><p>Filter: an “always-true” filter (any node passes this filter)</p></li>
+</ul>
+</section>
+<section id="full-queries">
+<h3>Full Queries<a class="headerlink" href="#full-queries" title="Permalink to this headline">¶</a></h3>
+<p>In the high-level API, a query is represented as a Python list of <em>abstract graph nodes</em>. In general, the following code can be used as a template to build a low-level query.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">wildcard1</span><span class="p">,</span> <span class="n">query1</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">wildcard2</span><span class="p">,</span> <span class="n">query2</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">wildcard3</span><span class="p">,</span> <span class="n">query3</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">filtered_gf</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="low-level-api">
+<h2>Low-Level API<a class="headerlink" href="#low-level-api" title="Permalink to this headline">¶</a></h2>
+<p>The low-level API for Hatchet’s query language is designed to allow users to perform more complex queries. It’s syntax is based on Python callables (e.g., functions, lambdas). The following subsections will describe each component of low-level queries. Like high-level queries, low-level queries can be used to filter a GraphFrame by passing it to the <code class="code docutils literal notranslate"><span class="pre">GraphFrame.filter</span></code> function as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">filtered_gf</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Wildcards<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Wildcards in the low-level API are the exact same as wildcards in the high-level API. The following values are currently allowed for wildcards:</p>
+<ul class="simple">
+<li><p>The string <code class="code docutils literal notranslate"><span class="pre">&quot;.&quot;</span></code>, which means “match 1 node”</p></li>
+<li><p>The string <code class="code docutils literal notranslate"><span class="pre">&quot;*&quot;</span></code>, which means “match 0 or more nodes”</p></li>
+<li><p>The string <code class="code docutils literal notranslate"><span class="pre">&quot;+&quot;</span></code>, which means “match 1 or more nodes”</p></li>
+<li><p>An integer, which means “match exactly that number of nodes” (integer 1 is equivalent to <code class="code docutils literal notranslate"><span class="pre">&quot;.&quot;</span></code>)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Filters<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The biggest difference between the high-level and low-level APIs are how filters are represented. In the low-level API, filters are represented by Python callables. These callables should take one argument representing a node in the graph and should return a boolean stating whether or not the node satisfies the filter. The type of the argument to the callable depends on whether the <code class="code docutils literal notranslate"><span class="pre">GraphFrame.drop_index_levels</span></code> function was previously called. If this function was called, the type of the argument will be a <code class="code docutils literal notranslate"><span class="pre">pandas.Series</span></code>. This <code class="code docutils literal notranslate"><span class="pre">Series</span></code> will be the row representing a node in the internal <code class="code docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>. If the <code class="code docutils literal notranslate"><span class="pre">GraphFrame.drop_index_levels</span></code> function was not called, the type of the argument will be a <code class="code docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>. This <code class="code docutils literal notranslate"><span class="pre">DataFrame</span></code> will contain the rows of the internal <code class="code docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> representing a node. Multiple rows are returned in this case because the internal <code class="code docutils literal notranslate"><span class="pre">DataFrame</span></code> will contain one row for every thread and function call.</p>
+<p>For example, if you want to match nodes with an exclusive time (represented by “time” column) greater than 2 and an inclusive time (represented by “time (inc)” column) greater than 5, you could use the following filter. This filter assumes you have already called the <code class="code docutils literal notranslate"><span class="pre">GraphFrame.drop_index_levels</span></code> function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">filter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Abstract Graph Nodes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>To build <em>abstract graph nodes</em> in the low-level API, you will first need to import Hatchet’s <code class="code docutils literal notranslate"><span class="pre">QueryMatcher</span></code> class. This can be done with the following import.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hatchet</span> <span class="kn">import</span> <span class="n">QueryMatcher</span>
+</pre></div>
+</div>
+<p>The <code class="code docutils literal notranslate"><span class="pre">QueryMatcher</span></code> class has two functions that can be used to build <em>abstract graph nodes</em>. The first function is <code class="code docutils literal notranslate"><span class="pre">QueryMatcher.match</span></code>, which resets the query and constructs a new <em>abstract graph node</em> as the root of the query. The second function is <code class="code docutils literal notranslate"><span class="pre">QueryMatcher.rel</span></code>, which constructs a new <em>abstract graph node</em> and appends it to the query. Both of these functions take two arguments: a wildcard and a low-level filter. If either the filter or wildcard are not provided, the default will be used. The defaults are as follows:</p>
+<ul class="simple">
+<li><p>Wildcard: <code class="code docutils literal notranslate"><span class="pre">&quot;.&quot;</span></code> (match 1 node)</p></li>
+<li><p>Filter: an “always-true” filter (any node passes this filter)</p></li>
+</ul>
+<p>Both of these functions also return a reference to the <code class="code docutils literal notranslate"><span class="pre">self</span></code> parameter of the <code class="code docutils literal notranslate"><span class="pre">QueryMatcher</span></code> object. This allows <code class="code docutils literal notranslate"><span class="pre">QueryMatcher.match</span></code> and <code class="code docutils literal notranslate"><span class="pre">QueryMatcher.rel</span></code> to be chained together.</p>
+</section>
+<section id="id4">
+<h3>Full Queries<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Full queries in the low-level API are built by making sucessive calls to the <code class="code docutils literal notranslate"><span class="pre">QueryMatcher.match</span></code> and <code class="code docutils literal notranslate"><span class="pre">QueryMatcher.rel</span></code> functions. In general, the following code can be used as a template to build a low-level query.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hatchet</span> <span class="kn">import</span> <span class="n">QueryMatcher</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="n">QueryMatcher</span><span class="p">()</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">wildcard1</span><span class="p">,</span> <span class="n">filter1</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">rel</span><span class="p">(</span><span class="n">wildcard2</span><span class="p">,</span> <span class="n">filter2</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">rel</span><span class="p">(</span><span class="n">wildcard3</span><span class="p">,</span> <span class="n">filter3</span><span class="p">)</span>
+<span class="n">filtered_gf</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="compound-queries">
+<h2>Compound Queries<a class="headerlink" href="#compound-queries" title="Permalink to this headline">¶</a></h2>
+<p><em>Compound queries is currently a development feature.</em></p>
+<p>Compound queries allow users to apply some operation on the results of one or more queries. Currently, the following compound queries are available directly from <code class="code docutils literal notranslate"><span class="pre">hatchet.query</span></code>:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">AndQuery</span></code> and <code class="code docutils literal notranslate"><span class="pre">IntersectionQuery</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">OrQuery</span></code> and <code class="code docutils literal notranslate"><span class="pre">UnionQuery</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">XorQuery</span></code> and <code class="code docutils literal notranslate"><span class="pre">SymDifferenceQuery</span></code></p></li>
+</ul>
+<p>Additionally, the compound query feature provides the following abstract base classes that can be used by users to implement their own compound queries:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">AbstractQuery</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">NaryQuery</span></code></p></li>
+</ul>
+<p>The following subsections will describe each of these compound query classes.</p>
+<section id="abstractquery">
+<h3>AbstractQuery<a class="headerlink" href="#abstractquery" title="Permalink to this headline">¶</a></h3>
+<p><code class="code docutils literal notranslate"><span class="pre">AbstractQuery</span></code> is an interface (i.e., abstract base class with no implementation) that defines the basic requirements for a query in the Hatchet query language. All query types, including user-created compound queries, must inherit from this class.</p>
+</section>
+<section id="naryquery">
+<h3>NaryQuery<a class="headerlink" href="#naryquery" title="Permalink to this headline">¶</a></h3>
+<p><code class="code docutils literal notranslate"><span class="pre">NaryQuery</span></code> is an abstract base class that inherits from <code class="code docutils literal notranslate"><span class="pre">AbstractQuery</span></code>. It defines the basic functionality and requirements for compound queries that perform one or more subqueries, collect the results of the subqueries, and performs some subclass defined operation to merge the results into a single result. Queries that inherit from <code class="code docutils literal notranslate"><span class="pre">NaryQuery</span></code> must implment the <code class="code docutils literal notranslate"><span class="pre">_perform_nary_op</span></code> function, which takes a list of results and should perform some operation on it.</p>
+</section>
+<section id="andquery">
+<h3>AndQuery<a class="headerlink" href="#andquery" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="code docutils literal notranslate"><span class="pre">AndQuery</span></code> class can be used to perform two or more subqueries and compute the intersection of all the returned lists of matched nodes. To create an <code class="code docutils literal notranslate"><span class="pre">AndQuery</span></code>, simply create your subqueries (which can be high-level, low-level, or compound), and pass them to the <code class="code docutils literal notranslate"><span class="pre">AndQuery</span></code> constructor. The following code can be used as a template for creating an <code class="code docutils literal notranslate"><span class="pre">AndQuery</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hatchet.query</span> <span class="kn">import</span> <span class="n">AndQuery</span>
+
+<span class="n">query1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">query2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">query3</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">and_query</span> <span class="o">=</span> <span class="n">AndQuery</span><span class="p">(</span><span class="n">query1</span><span class="p">,</span> <span class="n">query2</span><span class="p">,</span> <span class="n">query3</span><span class="p">)</span>
+<span class="n">filtered_gf</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">and_query</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">IntersectionQuery</span></code> is also provided as an alias (i.e., renaming) of <code class="code docutils literal notranslate"><span class="pre">AndQuery</span></code>. The two can be used interchangably.</p>
+</section>
+<section id="orquery">
+<h3>OrQuery<a class="headerlink" href="#orquery" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="code docutils literal notranslate"><span class="pre">OrQuery</span></code> class can be used to perform two or more subqueries and compute the union of all the returned lists of matched nodes. To create an <code class="code docutils literal notranslate"><span class="pre">OrQuery</span></code>, simply create your subqueries (which can be high-level, low-level, or compound), and pass them to the <code class="code docutils literal notranslate"><span class="pre">OrQuery</span></code> constructor. The following code can be used as a template for creating an <code class="code docutils literal notranslate"><span class="pre">OrQuery</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hatchet.query</span> <span class="kn">import</span> <span class="n">OrQuery</span>
+
+<span class="n">query1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">query2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">query3</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">or_query</span> <span class="o">=</span> <span class="n">OrQuery</span><span class="p">(</span><span class="n">query1</span><span class="p">,</span> <span class="n">query2</span><span class="p">,</span> <span class="n">query3</span><span class="p">)</span>
+<span class="n">filtered_gf</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">or_query</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">UnionQuery</span></code> is also provided as an alias (i.e., renaming) of <code class="code docutils literal notranslate"><span class="pre">OrQuery</span></code>. The two can be used interchangably.</p>
+</section>
+<section id="xorquery">
+<h3>XorQuery<a class="headerlink" href="#xorquery" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="code docutils literal notranslate"><span class="pre">XorQuery</span></code> class can be used to perform two or more subqueries and compute the symmetric difference (set theory equivalent to XOR) of all the returned lists of matched nodes. To create an <code class="code docutils literal notranslate"><span class="pre">XorQuery</span></code>, simply create your subqueries (which can be high-level, low-level, or compound), and pass them to the <code class="code docutils literal notranslate"><span class="pre">XorQuery</span></code> constructor. The following code can be used as a template for creating an <code class="code docutils literal notranslate"><span class="pre">XorQuery</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hatchet.query</span> <span class="kn">import</span> <span class="n">XorQuery</span>
+
+<span class="n">query1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">query2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">query3</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">QUERY</span> <span class="n">GOES</span> <span class="n">HERE</span><span class="o">&gt;</span>
+<span class="n">xor_query</span> <span class="o">=</span> <span class="n">XorQuery</span><span class="p">(</span><span class="n">query1</span><span class="p">,</span> <span class="n">query2</span><span class="p">,</span> <span class="n">query3</span><span class="p">)</span>
+<span class="n">filtered_gf</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">xor_query</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">SymDifferenceQuery</span></code> is also provided as an alias (i.e., renaming) of <code class="code docutils literal notranslate"><span class="pre">XorQuery</span></code>. The two can be used interchangably.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user_guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_generation.html" class="btn btn-neutral float-right" title="Generating Profiling Datasets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, LLNS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

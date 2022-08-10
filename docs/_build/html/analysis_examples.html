@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysis Examples &mdash; SPOT 0.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basic Tutorial: Hatchet 101" href="basic_tutorial.html" />
+    <link rel="prev" title="Generating Profiling Datasets" href="data_generation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SPOT
+          </a>
+              <div class="version">
+                0.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="query_lang.html">Query Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_generation.html">Generating Profiling Datasets</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Analysis Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reading-different-file-formats">Reading different file formats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#read-in-an-hpctoolkit-database">Read in an HPCToolkit database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#read-in-a-caliper-cali-file">Read in a Caliper cali file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#read-in-a-caliper-json-stream-or-file">Read in a Caliper JSON stream or file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#json-stream">JSON Stream</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#json-file">JSON File</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#read-in-a-dot-file">Read in a DOT file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#read-in-a-dag-literal">Read in a DAG literal</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-examples">Basic Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#applying-scalar-operations-to-attributes">Applying scalar operations to attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generating-a-flat-profile">Generating a flat profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#identifying-load-imbalance">Identifying load imbalance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparing-multiple-executions">Comparing multiple executions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-by-library">Filtering by library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#scaling-performance-examples">Scaling Performance Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#analyzing-strong-scaling-performance">Analyzing strong scaling performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyzing-weak-scaling-performance">Analyzing weak scaling performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#identifying-scaling-bottlenecks">Identifying scaling bottlenecks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_tutorial.html">Basic Tutorial: Hatchet 101</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications and Presentations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="source/hatchet.html">Hatchet API Docs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPOT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Analysis Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/analysis_examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="analysis-examples">
+<h1>Analysis Examples<a class="headerlink" href="#analysis-examples" title="Permalink to this headline">¶</a></h1>
+<section id="reading-different-file-formats">
+<h2>Reading different file formats<a class="headerlink" href="#reading-different-file-formats" title="Permalink to this headline">¶</a></h2>
+<p>Hatchet can read in a variety of data file formats into a GraphFrame. Below, we
+show examples of reading in different data formats.</p>
+<section id="read-in-an-hpctoolkit-database">
+<h3>Read in an HPCToolkit database<a class="headerlink" href="#read-in-an-hpctoolkit-database" title="Permalink to this headline">¶</a></h3>
+<p>A database directory is generated by using <code class="docutils literal notranslate"><span class="pre">hpcprof-mpi</span></code> to post-process the
+raw measurements directory output by <a class="reference external" href="http://hpctoolkit.org/index.html">HPCToolkit</a>. To analyze an HPCToolkit database, the
+<code class="docutils literal notranslate"><span class="pre">from_hpctoolkit</span></code> method can be used.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2017-2022 Lawrence Livermore National Security, LLC and other</span>
+<span class="c1"># Hatchet Project Developers. See the top-level LICENSE file for details.</span>
+<span class="c1">#</span>
+<span class="c1"># SPDX-License-Identifier: MIT</span>
+
+<span class="kn">import</span> <span class="nn">hatchet</span> <span class="k">as</span> <span class="nn">ht</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Path to HPCToolkit database directory.</span>
+    <span class="n">dirname</span> <span class="o">=</span> <span class="s2">&quot;../../../hatchet/tests/data/hpctoolkit-cpi-database&quot;</span>
+
+    <span class="c1"># Use hatchet&#39;s ``from_hpctoolkit`` API to read in the HPCToolkit database.</span>
+    <span class="c1"># The result is stored into Hatchet&#39;s GraphFrame.</span>
+    <span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_hpctoolkit</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
+
+    <span class="c1"># Printout the DataFrame component of the GraphFrame.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">)</span>
+
+    <span class="c1"># Printout the graph component of the GraphFrame.</span>
+    <span class="c1"># Use &quot;time (inc)&quot; as the metric column to be displayed</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">metric_column</span><span class="o">=</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="read-in-a-caliper-cali-file">
+<h3>Read in a Caliper cali file<a class="headerlink" href="#read-in-a-caliper-cali-file" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://software.llnl.gov/Caliper/">Caliper</a>’s default raw performance data
+output is the <a class="reference external" href="http://llnl.github.io/Caliper/OutputFormats.html#cali">cali</a>.
+The cali format can be read by <code class="docutils literal notranslate"><span class="pre">cali-query</span></code>, which transforms the raw data into
+JSON format.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2017-2022 Lawrence Livermore National Security, LLC and other</span>
+<span class="c1"># Hatchet Project Developers. See the top-level LICENSE file for details.</span>
+<span class="c1">#</span>
+<span class="c1"># SPDX-License-Identifier: MIT</span>
+
+<span class="kn">import</span> <span class="nn">hatchet</span> <span class="k">as</span> <span class="nn">ht</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Path to caliper cali file.</span>
+    <span class="n">cali_file</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;../../../hatchet/tests/data/caliper-lulesh-cali/lulesh-annotation-profile.cali&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Setup desired cali query.</span>
+    <span class="n">grouping_attribute</span> <span class="o">=</span> <span class="s2">&quot;function&quot;</span>
+    <span class="n">default_metric</span> <span class="o">=</span> <span class="s2">&quot;sum(sum#time.duration),inclusive_sum(sum#time.duration)&quot;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select function,</span><span class="si">%s</span><span class="s2"> group by </span><span class="si">%s</span><span class="s2"> format json-split&quot;</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="n">default_metric</span><span class="p">,</span>
+        <span class="n">grouping_attribute</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Use hatchet&#39;s ``from_caliper`` API with the path to the cali file and the</span>
+    <span class="c1"># query. This API will internally run ``cali-query`` on this file to</span>
+    <span class="c1"># produce a json-split stream. The result is stored into Hatchet&#39;s</span>
+    <span class="c1"># GraphFrame.</span>
+    <span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="n">cali_file</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+
+    <span class="c1"># Printout the DataFrame component of the GraphFrame.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">)</span>
+
+    <span class="c1"># Printout the graph component of the GraphFrame.</span>
+    <span class="c1"># Use &quot;time (inc)&quot; as the metric column to be displayed</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">metric_column</span><span class="o">=</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="read-in-a-caliper-json-stream-or-file">
+<h3>Read in a Caliper JSON stream or file<a class="headerlink" href="#read-in-a-caliper-json-stream-or-file" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://software.llnl.gov/Caliper/">Caliper</a>’s <a class="reference external" href="http://software.llnl.gov/Caliper/OutputFormats.html#json-split">json-split</a> format
+writes a JSON file with separate fields for Caliper records and metadata. The
+json-split format is generated by either running <code class="docutils literal notranslate"><span class="pre">cali-query</span></code> on the raw
+Caliper data or by enabling the <code class="docutils literal notranslate"><span class="pre">mpireport</span></code> service when using Caliper.</p>
+<section id="json-stream">
+<h4>JSON Stream<a class="headerlink" href="#json-stream" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2017-2022 Lawrence Livermore National Security, LLC and other</span>
+<span class="c1"># Hatchet Project Developers. See the top-level LICENSE file for details.</span>
+<span class="c1">#</span>
+<span class="c1"># SPDX-License-Identifier: MIT</span>
+
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">hatchet</span> <span class="k">as</span> <span class="nn">ht</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Path to caliper cali file.</span>
+    <span class="n">cali_file</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;../../../hatchet/tests/data/caliper-lulesh-cali/lulesh-annotation-profile.cali&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Setup desired cali query.</span>
+    <span class="n">cali_query</span> <span class="o">=</span> <span class="s2">&quot;cali-query&quot;</span>
+    <span class="n">grouping_attribute</span> <span class="o">=</span> <span class="s2">&quot;function&quot;</span>
+    <span class="n">default_metric</span> <span class="o">=</span> <span class="s2">&quot;sum(sum#time.duration),inclusive_sum(sum#time.duration)&quot;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select function,</span><span class="si">%s</span><span class="s2"> group by </span><span class="si">%s</span><span class="s2"> format json-split&quot;</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="n">default_metric</span><span class="p">,</span>
+        <span class="n">grouping_attribute</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Use ``cali-query`` here to produce the json-split stream.</span>
+    <span class="n">cali_json</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">cali_query</span><span class="p">,</span> <span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">cali_file</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Use hatchet&#39;s ``from_caliper`` API with the resulting json-split.</span>
+    <span class="c1"># The result is stored into Hatchet&#39;s GraphFrame.</span>
+    <span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="n">cali_json</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+
+    <span class="c1"># Printout the DataFrame component of the GraphFrame.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">)</span>
+
+    <span class="c1"># Printout the graph component of the GraphFrame.</span>
+    <span class="c1"># Use &quot;time (inc)&quot; as the metric column to be displayed</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">metric_column</span><span class="o">=</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="json-file">
+<h4>JSON File<a class="headerlink" href="#json-file" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2017-2022 Lawrence Livermore National Security, LLC and other</span>
+<span class="c1"># Hatchet Project Developers. See the top-level LICENSE file for details.</span>
+<span class="c1">#</span>
+<span class="c1"># SPDX-License-Identifier: MIT</span>
+
+<span class="kn">import</span> <span class="nn">hatchet</span> <span class="k">as</span> <span class="nn">ht</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Path to caliper json-split file.</span>
+    <span class="n">json_file</span> <span class="o">=</span> <span class="s2">&quot;../../../hatchet/tests/data/caliper-cpi-json/cpi-callpath-profile.json&quot;</span>
+
+    <span class="c1"># Use hatchet&#39;s ``from_caliper`` API with the resulting json-split.</span>
+    <span class="c1"># The result is stored into Hatchet&#39;s GraphFrame.</span>
+    <span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
+
+    <span class="c1"># Printout the DataFrame component of the GraphFrame.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">)</span>
+
+    <span class="c1"># Printout the graph component of the GraphFrame.</span>
+    <span class="c1"># Because no metric parameter is specified, ``time`` is used by default.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">tree</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="read-in-a-dot-file">
+<h3>Read in a DOT file<a class="headerlink" href="#read-in-a-dot-file" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://www.graphviz.org/doc/info/lang.html">DOT</a> file format is
+generated by using <code class="docutils literal notranslate"><span class="pre">gprof2dot</span></code> on <code class="docutils literal notranslate"><span class="pre">gprof</span></code> or <code class="docutils literal notranslate"><span class="pre">callgrind</span></code> output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2017-2022 Lawrence Livermore National Security, LLC and other</span>
+<span class="c1"># Hatchet Project Developers. See the top-level LICENSE file for details.</span>
+<span class="c1">#</span>
+<span class="c1"># SPDX-License-Identifier: MIT</span>
+
+<span class="kn">import</span> <span class="nn">hatchet</span> <span class="k">as</span> <span class="nn">ht</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Path to DOT file.</span>
+    <span class="n">dot_file</span> <span class="o">=</span> <span class="s2">&quot;../../../hatchet/tests/data/gprof2dot-cpi/callgrind.dot.64042.0.1&quot;</span>
+
+    <span class="c1"># Use hatchet&#39;s ``from_gprof_dot`` API to read in the DOT file. The result</span>
+    <span class="c1"># is stored into Hatchet&#39;s GraphFrame.</span>
+    <span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_gprof_dot</span><span class="p">(</span><span class="n">dot_file</span><span class="p">)</span>
+
+    <span class="c1"># Printout the DataFrame component of the GraphFrame.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">)</span>
+
+    <span class="c1"># Printout the graph component of the GraphFrame.</span>
+    <span class="c1"># Because no metric parameter is specified, ``time`` is used by default.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">tree</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="read-in-a-dag-literal">
+<h3>Read in a DAG literal<a class="headerlink" href="#read-in-a-dag-literal" title="Permalink to this headline">¶</a></h3>
+<p>The literal format is a list of dictionaries representing a graph with nodes
+and metrics.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- encoding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2017-2022 Lawrence Livermore National Security, LLC and other</span>
+<span class="c1"># Hatchet Project Developers. See the top-level LICENSE file for details.</span>
+<span class="c1">#</span>
+<span class="c1"># SPDX-License-Identifier: MIT</span>
+
+<span class="kn">import</span> <span class="nn">hatchet</span> <span class="k">as</span> <span class="nn">ht</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Define a literal GraphFrame using a list of dicts.</span>
+    <span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_literal</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">},</span>
+                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">135.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">},</span>
+                <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;bar&quot;</span><span class="p">},</span>
+                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+                        <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;baz&quot;</span><span class="p">},</span>
+                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+                            <span class="p">},</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;grault&quot;</span><span class="p">},</span>
+                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">},</span>
+                            <span class="p">},</span>
+                        <span class="p">],</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;qux&quot;</span><span class="p">},</span>
+                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">60.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">},</span>
+                        <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;quux&quot;</span><span class="p">},</span>
+                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">60.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+                                <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                    <span class="p">{</span>
+                                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;corge&quot;</span><span class="p">},</span>
+                                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">55.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">},</span>
+                                        <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                            <span class="p">{</span>
+                                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;bar&quot;</span><span class="p">},</span>
+                                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                    <span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">,</span>
+                                                    <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+                                                <span class="p">},</span>
+                                                <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                                    <span class="p">{</span>
+                                                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;baz&quot;</span><span class="p">},</span>
+                                                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                            <span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+                                                            <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+                                                        <span class="p">},</span>
+                                                    <span class="p">},</span>
+                                                    <span class="p">{</span>
+                                                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;grault&quot;</span><span class="p">},</span>
+                                                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                            <span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+                                                            <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+                                                        <span class="p">},</span>
+                                                    <span class="p">},</span>
+                                                <span class="p">],</span>
+                                            <span class="p">},</span>
+                                            <span class="p">{</span>
+                                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;grault&quot;</span><span class="p">},</span>
+                                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                    <span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+                                                    <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+                                                <span class="p">},</span>
+                                            <span class="p">},</span>
+                                            <span class="p">{</span>
+                                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;garply&quot;</span><span class="p">},</span>
+                                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                    <span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">,</span>
+                                                    <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">,</span>
+                                                <span class="p">},</span>
+                                            <span class="p">},</span>
+                                        <span class="p">],</span>
+                                    <span class="p">}</span>
+                                <span class="p">],</span>
+                            <span class="p">}</span>
+                        <span class="p">],</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;waldo&quot;</span><span class="p">},</span>
+                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">55.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">},</span>
+                        <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fred&quot;</span><span class="p">},</span>
+                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">40.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+                                <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                    <span class="p">{</span>
+                                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;plugh&quot;</span><span class="p">},</span>
+                                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+                                    <span class="p">},</span>
+                                    <span class="p">{</span>
+                                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;xyzzy&quot;</span><span class="p">},</span>
+                                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+                                        <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                            <span class="p">{</span>
+                                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thud&quot;</span><span class="p">},</span>
+                                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                    <span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">25.0</span><span class="p">,</span>
+                                                    <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+                                                <span class="p">},</span>
+                                                <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                                    <span class="p">{</span>
+                                                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;baz&quot;</span><span class="p">},</span>
+                                                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                            <span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+                                                            <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>
+                                                        <span class="p">},</span>
+                                                    <span class="p">},</span>
+                                                    <span class="p">{</span>
+                                                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;garply&quot;</span><span class="p">},</span>
+                                                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                                            <span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">,</span>
+                                                            <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">,</span>
+                                                        <span class="p">},</span>
+                                                    <span class="p">},</span>
+                                                <span class="p">],</span>
+                                            <span class="p">}</span>
+                                        <span class="p">],</span>
+                                    <span class="p">},</span>
+                                <span class="p">],</span>
+                            <span class="p">},</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;garply&quot;</span><span class="p">},</span>
+                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">},</span>
+                            <span class="p">},</span>
+                        <span class="p">],</span>
+                    <span class="p">},</span>
+                <span class="p">],</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ほげ (hoge)&quot;</span><span class="p">},</span>
+                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">},</span>
+                <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;(ぴよ (piyo)&quot;</span><span class="p">},</span>
+                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+                        <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ふが (fuga)&quot;</span><span class="p">},</span>
+                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+                            <span class="p">},</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ほげら (hogera)&quot;</span><span class="p">},</span>
+                                <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>
+                            <span class="p">},</span>
+                        <span class="p">],</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ほげほげ (hogehoge)&quot;</span><span class="p">},</span>
+                        <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">},</span>
+                    <span class="p">},</span>
+                <span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Printout the DataFrame component of the GraphFrame.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">)</span>
+
+    <span class="c1"># Printout the graph component of the GraphFrame.</span>
+    <span class="c1"># Because no metric parameter is specified, ``time`` is used by default.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">tree</span><span class="p">(</span><span class="n">metric_column</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time (inc)&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="basic-examples">
+<h2>Basic Examples<a class="headerlink" href="#basic-examples" title="Permalink to this headline">¶</a></h2>
+<section id="applying-scalar-operations-to-attributes">
+<h3>Applying scalar operations to attributes<a class="headerlink" href="#applying-scalar-operations-to-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Individual numeric columns in the dataframe can be scaled or offset by a
+constant using the native pandas operations. We make a copy of the original
+graphframe, and modify the dataframe directly. In this example, we offset the
+<code class="docutils literal notranslate"><span class="pre">time</span></code> column by -2 and scale it by 1/1e7, storing the result in a new column
+in the dataframe called <code class="docutils literal notranslate"><span class="pre">scaled</span> <span class="pre">time</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_hpctoolkit</span><span class="p">(</span><span class="s1">&#39;kripke&#39;</span><span class="p">)</span>
+<span class="n">gf</span><span class="o">.</span><span class="n">drop_index_levels</span><span class="p">()</span>
+
+<span class="n">offset</span> <span class="o">=</span> <span class="mf">1e7</span>
+<span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;scaled time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">offset</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="n">sorted_df</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;scaled time&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/scale-offset-df.png"><img alt="_images/scale-offset-df.png" src="_images/scale-offset-df.png" style="width: 408.0px; height: 218.8px;" /></a>
+</section>
+<section id="generating-a-flat-profile">
+<h3>Generating a flat profile<a class="headerlink" href="#generating-a-flat-profile" title="Permalink to this headline">¶</a></h3>
+<p>We can generate a flat profile in hatchet by using the <code class="docutils literal notranslate"><span class="pre">groupby</span></code>
+functionality in pandas. The flat profile can be based on any categorical
+column (e.g., function name, load module, file name). We can transform the tree
+or graph generated by a profiler into a flat profile by specifying the column
+on which to apply the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation and the function to use for
+aggregation.</p>
+<p>In the example below, we apply a pandas <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation on the <code class="docutils literal notranslate"><span class="pre">name</span></code>
+column. The time spent in each function is computed using <code class="docutils literal notranslate"><span class="pre">sum</span></code> to aggregate
+rows in a group. We then display the resulting DataFrame sorted by time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in Kripke HPCToolkit database.</span>
+<span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_hpctoolkit</span><span class="p">(</span><span class="s1">&#39;kripke&#39;</span><span class="p">)</span>
+
+<span class="c1"># Drop all index levels in the DataFrame except ``node``.</span>
+<span class="n">gf</span><span class="o">.</span><span class="n">drop_index_levels</span><span class="p">()</span>
+
+<span class="c1"># Group DataFrame by ``name`` column, compute sum of all rows in each</span>
+<span class="c1"># group. This shows the aggregated time spent in each function.</span>
+<span class="n">grouped</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Sort DataFrame by ``time`` column in descending order.</span>
+<span class="n">sorted_df</span> <span class="o">=</span> <span class="n">grouped</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+                                <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Display resulting DataFrame.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/flat-function.png"><img alt="_images/flat-function.png" src="_images/flat-function.png" style="width: 363.20000000000005px; height: 270.8px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: Resulting DataFrame after performing a groupby on the <code class="docutils literal notranslate"><span class="pre">name</span></code>
+column in this HPCToolkit dataset (only showing a handful of rows for
+brevity). The DataFrame is sorted in descending order by the <code class="docutils literal notranslate"><span class="pre">time</span></code> column
+to show the function name with the biggest execution time.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="identifying-load-imbalance">
+<h3>Identifying load imbalance<a class="headerlink" href="#identifying-load-imbalance" title="Permalink to this headline">¶</a></h3>
+<p>Hatchet makes it extremely easy to study load imbalance across processes or
+threads at the per-node granularity (call site or function level). A typical
+metric to measure imbalance is to look at the ratio of the maximum and average
+time spent in a code region across all processes.</p>
+<p>In this example, we ran LULESH across 512 cores, and are interested in
+understanding the imbalance across processes. We first perform a
+<code class="docutils literal notranslate"><span class="pre">drop_index_levels</span></code> operation on the GraphFrame in two different ways: (1) by
+providing mean as a function in one case, and (2) max as the function to
+another copy of the DataFrame. This generates two DataFrames, one containing
+the average time spent in each node, and the other containing the maximum time
+spent in each node by any process. If we divide the corresponding columns of
+the two DataFrames and look at the nodes with the highest value of the
+max-to-average ratio, we can identify the nodes with highest imbalance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in LULESH Caliper dataset.</span>
+<span class="n">gf1</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="s1">&#39;lulesh-512cores&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a copy of the GraphFrame.</span>
+<span class="n">gf2</span> <span class="o">=</span> <span class="n">gf1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Drop all index levels in gf1&#39;s DataFrame except ``node``, computing the</span>
+<span class="c1"># average time spent in each node.</span>
+<span class="n">gf1</span><span class="o">.</span><span class="n">drop_index_levels</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+
+<span class="c1"># Drop all index levels in a copy of gf1&#39;s DataFrame except ``node``, this</span>
+<span class="c1"># time computing the max time spent in each node.</span>
+<span class="n">gf2</span><span class="o">.</span><span class="n">drop_index_levels</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+
+<span class="c1"># Compute the imbalance by dividing the ``time`` column in the max DataFrame</span>
+<span class="c1"># (i.e., gf2) by the average DataFrame (i.e., gf1). This creates a new column</span>
+<span class="c1"># called ``imbalance`` in gf1&#39;s DataFrame.</span>
+<span class="n">gf1</span><span class="o">.</span><span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;imbalance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gf2</span><span class="o">.</span><span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">gf1</span><span class="o">.</span><span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+
+<span class="c1"># Sort DataFrame by ``imbalance`` column in descending order.</span>
+<span class="n">sorted_df</span> <span class="o">=</span> <span class="n">gf1</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;imbalance&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Display resulting DataFrame.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/lulesh-load-imb.png"><img alt="_images/lulesh-load-imb.png" src="_images/lulesh-load-imb.png" style="width: 524.0px; height: 178.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 2: Resulting DataFrame showing the imbalance in this Caliper dataset
+(only showing a handful of rows for brevity). The DataFrame is sorted in
+descending order by the new <code class="docutils literal notranslate"><span class="pre">imbalance</span></code> column calculated by dividing the
+max/average time of each function. The function with the highest level of
+imbalance within a node is <code class="docutils literal notranslate"><span class="pre">LagrangeNodal</span></code> with an imbalance of 2.49.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="comparing-multiple-executions">
+<h3>Comparing multiple executions<a class="headerlink" href="#comparing-multiple-executions" title="Permalink to this headline">¶</a></h3>
+<p>An important task in parallel performance analysis is comparing the performance
+of an application on two different thread counts or process counts. The
+<code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">squash</span></code>, and <code class="docutils literal notranslate"><span class="pre">subtract</span></code> operations provided by the Hatchet API
+can be extremely powerful in comparing profiling datasets from two executions.</p>
+<p>In the example below, we ran LULESH at two core counts: 1 core and 27 cores,
+and wanted to identify the performance changes as one scales on a node. We
+subtract the GraphFrame at 27 cores from the GraphFrame at 1 core (after
+dropping the additional index levels), and sort the resulting GraphFrame by
+execution time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in LULESH Caliper dataset at 1 core.</span>
+<span class="n">gf1</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="s1">&#39;lulesh-1core.json&#39;</span><span class="p">)</span>
+
+<span class="c1"># Read in LULESH Caliper dataset at 27 cores.</span>
+<span class="n">gf2</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="s1">&#39;lulesh-27cores.json&#39;</span><span class="p">)</span>
+
+<span class="c1"># Drop all index levels in gf2&#39;s DataFrame except ``node``.</span>
+<span class="n">gf2</span><span class="o">.</span><span class="n">drop_index_levels</span><span class="p">()</span>
+
+<span class="c1"># Subtract the GraphFrame at 27 cores from the GraphFrame at 1 core, and</span>
+<span class="c1"># store result in a new GraphFrame.</span>
+<span class="n">gf3</span> <span class="o">=</span> <span class="n">gf2</span> <span class="o">-</span> <span class="n">gf1</span>
+
+<span class="c1"># Sort resulting DataFrame by ``time`` column in descending order.</span>
+<span class="n">sorted_df</span> <span class="o">=</span> <span class="n">gf3</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Display resulting DataFrame.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/lulesh-diff-df.png"><img alt="_images/lulesh-diff-df.png" src="_images/lulesh-diff-df.png" style="width: 510.0px; height: 157.20000000000002px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 3: Resulting DataFrame showing the performance differences when
+running LULESH at 1 core vs. 27 cores (only showing a handful of rows for
+brevity). The DataFrame sorts the function names in descending order by the
+<code class="docutils literal notranslate"><span class="pre">time</span></code> column. The <code class="docutils literal notranslate"><span class="pre">TimeIncrement</span></code> has the largest difference in
+execution time of 8.5e6 as the code scales from 1 to 27 cores.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="filtering-by-library">
+<h3>Filtering by library<a class="headerlink" href="#filtering-by-library" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes, users are interested in analyzing how a particular library, such as
+PetSc or MPI, is used by their application and how the time spent in the
+library changes as we scale to a larger number of processes.</p>
+<p>In this next example, we compare two datasets generated from executions at
+different numbers of MPI processes. We read in two datasets of LULESH at 27 and
+512 MPI processes, respectively, and filter them both on the <code class="docutils literal notranslate"><span class="pre">name</span></code> column by
+matching the names against <code class="docutils literal notranslate"><span class="pre">^MPI</span></code>. After the filtering operation, we
+<code class="docutils literal notranslate"><span class="pre">squash</span></code> the DataFrames to generate GraphFrames that just contain the MPI
+calls from the original datasets. We can now subtract the squashed datasets to
+identify the biggest offenders.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in LULESH Caliper dataset at 27 cores.</span>
+<span class="n">gf1</span> <span class="o">=</span> <span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="s1">&#39;lulesh-27cores&#39;</span><span class="p">)</span>
+
+<span class="c1"># Drop all index levels in DataFrame except ``node``.</span>
+<span class="n">gf1</span><span class="o">.</span><span class="n">drop_index_levels</span><span class="p">()</span>
+
+<span class="c1"># Filter GraphFrame by names that start with ``MPI``. This only filters the #</span>
+<span class="c1"># DataFrame. The Graph and DataFrame are now out of sync.</span>
+<span class="n">filtered_gf1</span> <span class="o">=</span> <span class="n">gf1</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;MPI&#39;</span><span class="p">))</span>
+
+<span class="c1"># Squash GraphFrame, the nodes in the Graph now match what&#39;s in the</span>
+<span class="c1"># DataFrame.</span>
+<span class="n">squashed_gf1</span> <span class="o">=</span> <span class="n">filtered_gf1</span><span class="o">.</span><span class="n">squash</span><span class="p">()</span>
+
+<span class="c1"># Read in LULESH Caliper dataset at 512 cores, drop all index levels except</span>
+<span class="c1"># ``node``, filter and squash the GraphFrame, leaving only nodes that start</span>
+<span class="c1"># with ``MPI``.</span>
+<span class="n">gf2</span> <span class="o">=</span> <span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="s1">&#39;lulesh-512cores&#39;</span><span class="p">)</span>
+<span class="n">gf2</span><span class="o">.</span><span class="n">drop_index_levels</span><span class="p">()</span>
+<span class="n">filtered_gf2</span> <span class="o">=</span> <span class="n">gf2</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;MPI&#39;</span><span class="p">))</span>
+<span class="n">squashed_gf2</span> <span class="o">=</span> <span class="n">filtered_gf2</span><span class="o">.</span><span class="n">squash</span><span class="p">()</span>
+
+<span class="c1"># Subtract the two GraphFrames, store the result in a new GraphFrame.</span>
+<span class="n">diff_gf</span> <span class="o">=</span> <span class="n">squashed_gf2</span> <span class="o">-</span> <span class="n">squashed_gf1</span>
+
+<span class="c1"># Sort resulting DataFrame by ``time`` column in descending order.</span>
+<span class="n">sorted_df</span> <span class="o">=</span> <span class="n">diff_gf</span><span class="o">.</span><span class="n">dataframe</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Display resulting DataFrame.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sorted_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/lulesh-mpi.png"><img alt="_images/lulesh-mpi.png" src="_images/lulesh-mpi.png" style="width: 414.0px; height: 201.60000000000002px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 4: Resulting DataFrame showing the MPI performance differences when
+running LULESH at 27 cores vs. 512 cores. The DataFrame sorts the MPI
+functions in descending order by the <code class="docutils literal notranslate"><span class="pre">time</span></code> column. In this example, the
+<code class="docutils literal notranslate"><span class="pre">MPI_Allreduce</span></code> function sees the largest increase in time scaling from 27
+to 512 cores.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="scaling-performance-examples">
+<h2>Scaling Performance Examples<a class="headerlink" href="#scaling-performance-examples" title="Permalink to this headline">¶</a></h2>
+<section id="analyzing-strong-scaling-performance">
+<h3>Analyzing strong scaling performance<a class="headerlink" href="#analyzing-strong-scaling-performance" title="Permalink to this headline">¶</a></h3>
+<p>Hatchet can be used for a strong scaling analysis of applications.  In this
+example, we compare the performance of LULESH running on 1 and 64 cores.
+By executing a simple <code class="docutils literal notranslate"><span class="pre">divide</span></code> of the two datasets in Hatchet, we can quickly
+pinpoint bottleneck functions. In the resulting graph, we invert the color
+scheme, so that functions that did not scale well (i.e., have a low speedup)
+are colored in red.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gf_1core</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="s1">&#39;lulesh*-1core.json&#39;</span><span class="p">)</span>
+<span class="n">gf_64cores</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="s1">&#39;lulesh*-64cores.json&#39;</span><span class="p">)</span>
+
+<span class="n">gf_64cores</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">64</span>
+
+<span class="n">gf_strong_scale</span> <span class="o">=</span> <span class="n">gf_1core</span> <span class="o">/</span> <span class="n">gf_64cores</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="_images/strong-scale-graph1.png"><img alt="pic1" src="_images/strong-scale-graph1.png" style="width: 277.8px; height: 331.2px;" /></a> / <a class="reference internal" href="_images/strong-scale-graph2.png"><img alt="pic2" src="_images/strong-scale-graph2.png" style="width: 278.4px; height: 494.4px;" /></a> = <a class="reference internal" href="_images/strong-scale-graph3.png"><img alt="pic3" src="_images/strong-scale-graph3.png" style="width: 278.4px; height: 493.79999999999995px;" /></a></p>
+</section>
+<section id="analyzing-weak-scaling-performance">
+<h3>Analyzing weak scaling performance<a class="headerlink" href="#analyzing-weak-scaling-performance" title="Permalink to this headline">¶</a></h3>
+<p>Hatchet can be used for comparing parallel scaling performance of applications.
+In this example, we compare the performance of LULESH running on 1 and 27 cores.
+By executing a simple <code class="docutils literal notranslate"><span class="pre">divide</span></code> of the two datasets in Hatchet, we can quickly
+identify which function calls did or did not scale well. In the resulting
+graph, we invert the color scheme, so that functions that did not scale well
+(i.e., have a low speedup) are colored in red.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gf_1core</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="s1">&#39;lulesh*-1core.json&#39;</span><span class="p">)</span>
+<span class="n">gf_27cores</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="s1">&#39;lulesh*-27cores.json&#39;</span><span class="p">)</span>
+
+<span class="n">gf_weak_scale</span> <span class="o">=</span> <span class="n">gf_1core</span> <span class="o">/</span> <span class="n">gf_27cores</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="_images/weak-scale-graph1.png"><img alt="pic4" src="_images/weak-scale-graph1.png" style="width: 279.0px; height: 402.0px;" /></a> / <a class="reference internal" href="_images/weak-scale-graph2.png"><img alt="pic5" src="_images/weak-scale-graph2.png" style="width: 278.4px; height: 566.4px;" /></a> <a class="reference internal" href="_images/weak-scale-graph3.png"><img alt="pic6" src="_images/weak-scale-graph3.png" style="width: 278.4px; height: 564.0px;" /></a> =</p>
+</section>
+<section id="identifying-scaling-bottlenecks">
+<h3>Identifying scaling bottlenecks<a class="headerlink" href="#identifying-scaling-bottlenecks" title="Permalink to this headline">¶</a></h3>
+<p>Hatchet can also be used to analyze data in a weak or strong scaling
+performance study. In this example, we ran LULESH from 1 to 512 cores on third
+powers of some numbers. We read in all the datasets into Hatchet, and for each
+dataset, we use a few lines of code to filter the regions where the code spends
+most of the time. We then use the pandas’ pivot and plot operations to generate
+a stacked bar chart that shows how the time spent in different regions of
+LULESH changes as the code scales.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab all LULESH Caliper datasets, store in a sorted list.</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;lulesh*.json&#39;</span><span class="p">)</span>
+<span class="n">datasets</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="c1"># For each dataset, create a new GraphFrame, and drop all index levels,</span>
+<span class="c1"># except ``node``. Insert filtered graphframe into a list.</span>
+<span class="n">dataframes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+    <span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">gf</span><span class="o">.</span><span class="n">drop_index_levels</span><span class="p">()</span>
+
+    <span class="c1"># Grab the number of processes from the file name, store this as a new</span>
+    <span class="c1"># column in the DataFrame.</span>
+    <span class="n">num_pes</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;(.*)-(\d+)(.*)&#39;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;pes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_pes</span>
+
+    <span class="c1"># Filter the GraphFrame keeping only those rows with ``time`` greater</span>
+    <span class="c1"># than 1e6.</span>
+    <span class="n">filtered_gf</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1e6</span><span class="p">)</span>
+
+    <span class="c1"># Insert the filtered GraphFrame into a list.</span>
+    <span class="n">dataframes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filtered_gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">)</span>
+
+<span class="c1"># Concatenate all DataFrames into a single DataFrame called ``result``.</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes</span><span class="p">)</span>
+
+<span class="c1"># Reshape the Dataframe, such that ``pes`` is an index column, ``name``</span>
+<span class="c1"># fields are the new column names, and the values for each cell is the</span>
+<span class="c1"># ``time`` fields.</span>
+<span class="n">pivot_df</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;pes&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+
+<span class="c1"># Make a stacked bar chart using the data in the pivot table above.</span>
+<span class="n">pivot_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/lulesh-plot.png"><img alt="_images/lulesh-plot.png" src="_images/lulesh-plot.png" style="width: 738.5px; height: 461.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 5: Resulting stacked bar chart showing the time spent in different
+functions in LULESH as the code scales from 1 up to 512 processes. In this
+example, the <code class="docutils literal notranslate"><span class="pre">CalcHourglassControlForElems</span></code> function increases in runtime
+moving from 1 to 8 processes, then stays constant.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>We use the same LULESH scaling datasets above to filter for time-consuming
+functions that start with the string <code class="docutils literal notranslate"><span class="pre">Calc</span></code>. This data is used to produce a
+line chart showing the performance of each function as the number of processes
+is increased. One of the functions (<code class="docutils literal notranslate"><span class="pre">CalcMonotonicQRegionForElems</span></code>) does not
+occur until the number of processes is greater than 1.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;lulesh*.json&#39;</span><span class="p">)</span>
+<span class="n">datasets</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="n">dataframes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+    <span class="n">gf</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">GraphFrame</span><span class="o">.</span><span class="n">from_caliper</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">gf</span><span class="o">.</span><span class="n">drop_index_levels</span><span class="p">()</span>
+
+    <span class="n">num_pes</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;(.*)-(\d+)(.*)&#39;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;pes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_pes</span>
+    <span class="n">filtered_gf</span> <span class="o">=</span> <span class="n">gf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1e6</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Calc&#39;</span><span class="p">))</span>
+    <span class="n">dataframes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filtered_gf</span><span class="o">.</span><span class="n">dataframe</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes</span><span class="p">)</span>
+<span class="n">pivot_df</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;pes&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">pivot_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,:]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/lulesh-line-plot.png"><img alt="_images/lulesh-line-plot.png" class="align-center" src="_images/lulesh-line-plot.png" style="width: 739.0px; height: 385.5px;" /></a>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_generation.html" class="btn btn-neutral float-left" title="Generating Profiling Datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="basic_tutorial.html" class="btn btn-neutral float-right" title="Basic Tutorial: Hatchet 101" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, LLNS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
